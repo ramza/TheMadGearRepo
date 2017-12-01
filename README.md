@@ -1,11 +1,11 @@
-# TheMadGear
+# TheMadGear: Go Right and Fight!
 
-![the mad gear](https://raw.githubusercontent.com/ramza/TheMadGear/master/images/cutscenes/title.png)
+The Baddest Rock Band in Turbo City
 
-[The Mad Gear](https://www.facebook.com/themadgear/) are the badest bunch of dudes in the galaxy. 
+Battle your way through five levels of classic beat 'em up style gameplay featuring the worst that Turbo City's loony fighting gangs have to offer.
 
-This project uses the open source game engine [Godot](https://godotengine.org/). The sprites were created with [Asesprite](https://www.aseprite.org/). 
+Turbo City better watch out! Villains beware.
 
-![prison](https://raw.githubusercontent.com/ramza/TheMadGear/master/images/screenshots/prison.png)
+The Mad Gear need your help to clear their name and save the mayor. Arrested under the false charge of kidnapping the mayor of Turbo City, The Mad Gear Gang of Tough Guys have no choice but to bust out and find the true culprit.
 
-![prison](https://raw.githubusercontent.com/ramza/TheMadGear/master/images/screenshots/city.png)
+Team up with a friend and go head to head with a hilarious cast of villains rendered in bold pixel graphics. There's no shortage of explosions in this game either. Smash your way through five different gangs and face off with every gang boss.
