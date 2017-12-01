@@ -1,0 +1,170 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://scripts/vending_machine.gd" type="Script" id=1]
+[ext_resource path="res://images/props/broken_wall..png" type="Texture" id=2]
+[ext_resource path="res://audio/explode.wav" type="Sample" id=3]
+[ext_resource path="res://audio/hurt3.wav" type="Sample" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/explode = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/hurt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "damage1"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 1 ] }
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "damage2"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "damage3"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 1 ] }
+
+[sub_resource type="Animation" id=6]
+
+resource/name = "damage4"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+
+[sub_resource type="Animation" id=7]
+
+resource/name = "damage5"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+
+[sub_resource type="Animation" id=8]
+
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 0 ] }
+
+[node name="broken_wall" type="KinematicBody2D" groups=[ "breakables" ]]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 4.91738e-07, -0.237832 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+hp = 3
+drop_coin = false
+drop_spread = 20
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 4.91738e-07, -0.237832 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/damage1 = SubResource( 3 )
+anims/damage2 = SubResource( 4 )
+anims/damage3 = SubResource( 5 )
+anims/damage4 = SubResource( 6 )
+anims/damage5 = SubResource( 7 )
+anims/idle = SubResource( 8 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 4.91738e-07, -0.237832 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="StaticBody2D"]
+
+transform/pos = Vector2( 4.91738e-07, -0.237832 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+

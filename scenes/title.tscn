@@ -1,0 +1,397 @@
+[gd_scene load_steps=19 format=1]
+
+[ext_resource path="res://scripts/title.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/brick_wall.png" type="Texture" id=2]
+[ext_resource path="res://images/props/pink_spot_light.png" type="Texture" id=3]
+[ext_resource path="res://images/cutscenes/title.png" type="Texture" id=4]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://audio/start.wav" type="Sample" id=6]
+[ext_resource path="res://audio/misc_fight_sounds/Air Swing 1.wav" type="Sample" id=7]
+[ext_resource path="res://images/cutscenes/press_start.png" type="Texture" id=8]
+[ext_resource path="res://images/HUD/exit_red.png" type="Texture" id=9]
+[ext_resource path="res://images/HUD/quit_button.png" type="Texture" id=10]
+[ext_resource path="res://images/HUD/exit_yellow.png" type="Texture" id=11]
+
+[sub_resource type="ColorRamp" id=1]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0, 0, 0, 1, 0.154022, 0.163722, 0.402344, 0 )
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "search"
+length = 5.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1, 5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("start_label:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("start_label:visibility/self_opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player1_label:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2, 0.4 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("player2_label:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player2_label:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2, 0.4 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("player1_label:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("start_label:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0 ]
+}
+
+[sub_resource type="SampleLibrary" id=7]
+
+samples/start = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/swing = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+
+[node name="title" type="Node2D" groups=[
+"title",
+]]
+
+script/script = ExtResource( 1 )
+
+[node name="bkg" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+transform/pos = Vector2( 152.922, 177.779 )
+config/amount = 40
+config/lifetime = 10.0
+config/preprocess = 5.0
+config/process_mode = 1
+config/half_extents = Vector2( 180, 10 )
+params/direction = 180.0
+params/spread = 70.0
+params/linear_velocity = 20.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 50.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0.202515, 0.332477, 0.925781, 0.0655686 )
+color/color_ramp = SubResource( 1 )
+
+[node name="spot_light" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 162.902, 192.224 )
+transform/rot = -22.8635
+
+[node name="Sprite" type="Sprite" parent="spot_light"]
+
+visibility/opacity = 0.3
+transform/pos = Vector2( 21.1842, 14.3273 )
+transform/rot = 9.17539
+transform/scale = Vector2( 1.58823, 1.53388 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.691055, -88.6259 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="spot_light"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/search = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "search"
+
+[node name="spot_light1" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 150.684, 203.627 )
+transform/rot = 22.518
+transform/scale = Vector2( -1, 1 )
+
+[node name="Sprite" type="Sprite" parent="spot_light1"]
+
+visibility/opacity = 0.3
+transform/pos = Vector2( 20.8641, 13.5537 )
+transform/rot = 9.17539
+transform/scale = Vector2( 1.58823, 1.55086 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.691055, -88.6259 )
+modulate = Color( 0, 1, 0.273438, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="spot_light1"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/search = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "search"
+
+[node name="graphic" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 4 )
+
+[node name="start_label" type="Label" parent="."]
+
+visibility/blend_mode = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 181.0
+margin/top = 137.0
+margin/right = 249.0
+margin/bottom = 151.0
+custom_fonts/font = ExtResource( 5 )
+text = "press enter"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="player1_label" type="Label" parent="."]
+
+visibility/visible = false
+visibility/self_opacity = 0.945343
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 181.0
+margin/top = 130.0
+margin/right = 249.0
+margin/bottom = 144.0
+custom_fonts/font = ExtResource( 5 )
+text = "1 Player"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="player2_label" type="Label" parent="."]
+
+visibility/visible = false
+visibility/self_opacity = 0.945343
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 181.0
+margin/top = 148.0
+margin/right = 249.0
+margin/bottom = 162.0
+custom_fonts/font = ExtResource( 5 )
+text = "2 Players"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fade = SubResource( 3 )
+anims/player1_flash = SubResource( 4 )
+anims/player2_flash = SubResource( 5 )
+anims/pulse = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "fade"
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 7 )
+config/pitch_random = 0.0
+
+[node name="press_start" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 197.509, 149.229 )
+texture = ExtResource( 8 )
+
+[node name="Timer2" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 30.0
+one_shot = false
+autostart = true
+
+[node name="spacebar" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 182.0
+margin/top = 161.0
+margin/right = 486.0
+margin/bottom = 177.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "spacebar-leaderboards"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label 2" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 163.0
+margin/right = 93.0
+margin/bottom = 177.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.464447, 0.695313, 0.684491, 1 )
+text = "Brain Jar 2017"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="quit_button" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 297.0
+margin/top = 5.0
+margin/right = 337.0
+margin/bottom = 45.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 9 )
+textures/pressed = ExtResource( 10 )
+textures/hover = ExtResource( 11 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+

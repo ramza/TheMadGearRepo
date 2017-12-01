@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://images/shreddy/shadow.png" type="Texture" id=1]
+[ext_resource path="res://scripts/shadow.gd" type="Script" id=2]
+
+[node name="enemy_shadow" type="Sprite"]
+
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+[node name="raycast_down" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( 0.0872405, -1.69034 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+layer_mask = 1
+type_mask = 13
+
+[node name="raycast_right" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( 0.5168, -1.91334 )
+enabled = true
+cast_to = Vector2( 5, 0 )
+layer_mask = 1
+type_mask = 13
+
+[node name="raycast_left" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( -0.443886, -1.79735 )
+enabled = true
+cast_to = Vector2( -5, 0 )
+layer_mask = 1
+type_mask = 13
+
+[node name="raycast_up" type="RayCast2D" parent="."]
+
+transform/pos = Vector2( 0.218629, -0.163019 )
+enabled = true
+cast_to = Vector2( 0, -5 )
+layer_mask = 1
+type_mask = 13
+
+

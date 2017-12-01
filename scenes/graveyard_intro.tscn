@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://scripts/act_intro.gd" type="Script" id=1]
+[ext_resource path="res://images/scenery/starry_sky.png" type="Texture" id=2]
+[ext_resource path="res://images/scenery/moon.png" type="Texture" id=3]
+[ext_resource path="res://images/scenery/dark_clouds.png" type="Texture" id=4]
+[ext_resource path="res://images/scenery/trees.png" type="Texture" id=5]
+[ext_resource path="res://images/scenery/fence.png" type="Texture" id=6]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=7]
+[ext_resource path="res://images/HUD/white_screen.png" type="Texture" id=8]
+[ext_resource path="res://images/HUD/black_bar.png" type="Texture" id=9]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=10]
+
+[node name="graveyard_intro" type="Node2D" groups=[ "intros" ]]
+
+z/z = 3
+script/script = ExtResource( 1 )
+map_index = 8
+
+[node name="sky" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+z/relative = false
+texture = ExtResource( 2 )
+
+[node name="moon" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+z/relative = false
+texture = ExtResource( 3 )
+
+[node name="clouds" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+z/relative = false
+texture = ExtResource( 4 )
+
+[node name="trees" type="Sprite" parent="."]
+
+transform/pos = Vector2( 320, 90 )
+z/relative = false
+texture = ExtResource( 5 )
+
+[node name="trees1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 74 )
+z/relative = false
+texture = ExtResource( 6 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+z/z = -2
+mode = 0
+tile_set = ExtResource( 7 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 131073, 84, 131074, 85, 131075, 86, 196609, 83, 196610, 78, 196611, 82, 262145, 83, 262146, 91, 262147, 82, 262148, 76, 262149, 75, 262154, 76, 327680, 74, 327681, 83, 327682, 92, 327683, 82, 327684, 74, 327685, 74, 327686, 74, 327687, 74, 327688, 74, 327689, 74, 327690, 74, 327691, 74, 327692, 74, 327693, 74, 327694, 74, 327695, 74, 327696, 74, 327697, 74, 327698, 74, 327699, 74, 393216, 71, 393217, 71, 393218, 71, 393219, 71, 393220, 71, 393221, 71, 393222, 71, 393223, 71, 393224, 71, 393225, 71, 393226, 71, 393227, 71, 393228, 71, 393229, 71, 393230, 71, 393231, 71, 393232, 71, 393233, 71, 393234, 71, 393235, 71, 458752, 69, 458753, 69, 458754, 69, 458755, 69, 458756, 69, 458757, 69, 458758, 69, 458759, 69, 458760, 69, 458761, 69, 458762, 69, 458763, 69, 458764, 69, 458765, 69, 458766, 69, 458767, 69, 458768, 69, 458769, 69, 458770, 69, 458771, 69, 524288, 70, 524289, 70, 524290, 70, 524291, 70, 524292, 70, 524293, 70, 524294, 70, 524295, 70, 524296, 70, 524297, 70, 524298, 70, 524299, 70, 524300, 70, 524301, 70, 524302, 70, 524303, 70, 524304, 70, 524305, 70, 524306, 70, 524307, 70, 589824, 26, 589825, 13, 589826, 13, 589827, 12, 589828, 12, 589829, 12, 589830, 12, 589831, 12, 589832, 12, 589833, 12, 589834, 12, 589835, 12, 589836, 12, 589837, 12, 589838, 12, 589839, 12, 589840, 12, 589841, 12, 589842, 12, 589843, 12, 655360, 13, 655361, 13, 655362, 12, 655363, 13, 655364, 14, 655365, 12, 655366, 12, 655367, 12, 655368, 12, 655369, 12, 655370, 12, 655371, 12, 655372, 13, 655373, 12, 655374, 12, 655375, 12, 655376, 14, 655377, 12, 655378, 12, 655379, 12, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4 )
+
+[node name="white_screen" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 8 )
+modulate = Color( 0.382813, 0, 0.358887, 0.213098 )
+
+[node name="black_bar" type="Sprite" parent="." groups=[ "intros" ]]
+
+transform/pos = Vector2( 152.685, 159.803 )
+transform/scale = Vector2( 1.06936, 2.43163 )
+texture = ExtResource( 9 )
+
+[node name="act" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 143.0
+margin/right = 77.0
+margin/bottom = 157.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Act III"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="subtitle" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 159.0
+margin/right = 167.0
+margin/bottom = 173.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 1, 0.82782, 0.152344, 1 )
+text = "A Graveyard Smash"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+
+

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/enemy_punch.gd" type="Script" id=1]
+[ext_resource path="res://images/effects/blue_burst.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 11.8422, 4.70923 )
+
+[node name="enemy_punch" type="Area2D" groups=[ "enemies" ]]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1.17137, 0, 0, 1, 8.60696, -0.529614 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 8.60696, -0.529614 )
+transform/scale = Vector2( 1.17137, 1 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( -1.33315, -1.06612 )
+z/z = 10
+texture = ExtResource( 2 )
+
+

@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://images/scenery/moon_sky.png" type="Texture" id=1]
+[ext_resource path="res://images/scenery/dark_tree_line.png" type="Texture" id=2]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=3]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=6]
+[ext_resource path="res://scenes/prison_door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/vending_machine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/spikes.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/fan.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[node name="prison_3" type="Node2D" groups=[
+"boss",
+]]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.1, 0.1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 1 )
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.2, 0.2 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
+
+transform/pos = Vector2( 164.863, 50.554 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 31, 0, 31, 1, 31, 2, 31, 3, 31, 4, 31, 17, 30, 18, 30, 19, 30, 20, 30, 21, 30, 22, 0, 23, 0, 24, 0, 25, 0, 26, 0, 27, 0, 28, 0, 29, 0, 30, 0, 131071, 31, 65536, 31, 65537, 31, 65538, 31, 65539, 31, 65540, 31, 65541, 2, 65542, 68, 65543, 32, 65544, 32, 65545, 68, 65546, 32, 65547, 32, 65548, 68, 65549, 32, 65550, 32, 65551, 68, 65552, 0, 65553, 30, 65554, 30, 65555, 30, 65556, 30, 65557, 30, 65558, 0, 65559, 0, 65560, 0, 65561, 0, 65562, 0, 65563, 0, 65564, 0, 65565, 0, 65566, 0, 196607, 31, 131072, 31, 131073, 31, 131074, 31, 131075, 31, 131076, 31, 131077, 2, 131078, 5, 131079, 6, 131080, 7, 131081, 5, 131082, 6, 131083, 7, 131084, 5, 131085, 6, 131086, 7, 131087, 5, 131088, 2, 131089, 30, 131090, 30, 131091, 30, 131092, 30, 131093, 30, 131094, 0, 131095, 0, 131096, 0, 131097, 0, 131098, 0, 131099, 0, 131100, 0, 131101, 0, 131102, 0, 262143, 31, 196608, 31, 196609, 31, 196610, 31, 196611, 31, 196612, 31, 196613, 2, 196614, 5, 196615, 8, 196616, 9, 196617, 5, 196618, 8, 196619, 9, 196620, 5, 196621, 8, 196622, 9, 196623, 104, 196624, 2, 196625, 30, 196626, 30, 196627, 30, 196628, 30, 196629, 30, 196630, 0, 196631, 0, 196632, 0, 196633, 0, 196634, 0, 196635, 0, 196636, 0, 196637, 0, 196638, 0, 327679, 31, 262144, 31, 262145, 31, 262146, 31, 262147, 31, 262148, 31, 262149, 2, 262150, 4, 262151, 0, 262152, 0, 262153, 0, 262154, 0, 262155, 0, 262156, 0, 262157, 0, 262158, 0, 262159, 4, 262160, 2, 262161, 30, 262162, 30, 262163, 30, 262164, 30, 262165, 30, 262166, 0, 262167, 0, 262168, 0, 262169, 0, 262170, 0, 262171, 0, 262172, 0, 262173, 0, 262174, 0, 393215, 31, 327680, 31, 327681, 31, 327682, 31, 327683, 31, 327684, 31, 327685, 2, 327686, 4, 327687, 2, 327688, 2, 327689, 2, 327690, 2, 327691, 2, 327692, 2, 327693, 2, 327694, 2, 327695, 4, 327696, 2, 327697, 30, 327698, 30, 327699, 30, 327700, 30, 327701, 30, 327702, 0, 327703, 0, 327704, 0, 327705, 0, 327706, 0, 327707, 0, 327708, 0, 327709, 0, 327710, 0, 458751, 31, 393216, 31, 393217, 31, 393218, 31, 393219, 31, 393220, 28, 393221, 11, 393222, 11, 393223, 11, 393224, 11, 393225, 11, 393226, 11, 393227, 11, 393228, 11, 393229, 11, 393230, 11, 393231, 11, 393232, 11, 393233, 29, 393234, 30, 393235, 30, 393236, 30, 393237, 30, 393238, 0, 393239, 0, 393240, 0, 393241, 0, 393242, 0, 393243, 0, 393244, 0, 393245, 0, 393246, 0, 524287, 31, 458752, 31, 458753, 31, 458754, 31, 458755, 26, 458756, 12, 458757, 12, 458758, 12, 458759, 12, 458760, 12, 458761, 12, 458762, 12, 458763, 12, 458764, 12, 458765, 12, 458766, 12, 458767, 12, 458768, 12, 458769, 12, 458770, 27, 458771, 30, 458772, 30, 458773, 30, 458774, 0, 458775, 0, 458776, 0, 458777, 0, 458778, 0, 458779, 0, 458780, 0, 458781, 0, 458782, 0, 589823, 31, 524288, 31, 524289, 31, 524290, 26, 524291, 12, 524292, 12, 524293, 12, 524294, 12, 524295, 12, 524296, 12, 524297, 12, 524298, 12, 524299, 12, 524300, 12, 524301, 12, 524302, 12, 524303, 13, 524304, 13, 524305, 13, 524306, 13, 524307, 27, 524308, 30, 524309, 30, 524310, 0, 524311, 0, 524312, 0, 524313, 0, 524314, 0, 524315, 0, 524316, 0, 524317, 0, 524318, 0, 655359, 31, 589824, 31, 589825, 26, 589826, 12, 589827, 14, 589828, 13, 589829, 13, 589830, 13, 589831, 13, 589832, 13, 589833, 12, 589834, 12, 589835, 12, 589836, 12, 589837, 12, 589838, 12, 589839, 12, 589840, 14, 589841, 13, 589842, 13, 589843, 13, 589844, 27, 589845, 30, 589846, 0, 589847, 0, 589848, 0, 589849, 0, 589850, 0, 589851, 0, 589852, 0, 589853, 0, 589854, 0, 720895, 31, 655360, 26, 655361, 12, 655362, 12, 655363, 12, 655364, 12, 655365, 12, 655366, 12, 655367, 12, 655368, 13, 655369, 13, 655370, 13, 655371, 13, 655372, 13, 655373, 13, 655374, 13, 655375, 13, 655376, 13, 655377, 13, 655378, 12, 655379, 13, 655380, 13, 655381, 27, 655382, 0, 655383, 0, 655384, 0, 655385, 0, 655386, 0, 655387, 0, 655388, 0, 655389, 0, 655390, 0, 786431, 4, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4, 720916, 4, 720917, 4, 720918, 0, 720919, 0, 720920, 0, 720921, 0, 720922, 0, 720923, 0, 720924, 0, 720925, 0, 720926, 0 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 4 )]
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 103.209, 108.072 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="enemy_spawn" type="Area2D" parent="."]
+
+transform/pos = Vector2( 103.75, 100.507 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = true
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 178.25, 53.493 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 146.25, 37.493 )
+
+[node name="door" parent="enemy_spawn" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 144.25, -20.5074 )
+map_index = 19
+
+[node name="vending_machine" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 224, 80 )
+
+[node name="spikes" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 128, 144 )
+
+[node name="fan" parent="." instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 104, 24 )
+
+[node name="fan1" parent="." instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 152, 24 )
+
+[node name="fan2" parent="." instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 200, 24 )
+
+[node name="fan3" parent="." instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 248, 24 )
+
+

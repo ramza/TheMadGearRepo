@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/camera_rig.gd" type="Script" id=1]
+[ext_resource path="res://scripts/camera_shake.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 60.0493, 94.6416 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5.84135, 23.3424 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 101.234 )
+
+[node name="camera_rig" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+transform/pos = Vector2( -1.6595, -1.60705 )
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+transform/pos = Vector2( 107.736, 94.1122 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 178.908, -9.56921 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( 178.908, -9.56921 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="left_wall" type="StaticBody2D" parent="." groups=[ "ignore" ]]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 2.86178, 0.171406, 113.473 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+one_way_collision/direction = Vector2( 1, 0 )
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
+
+transform/pos = Vector2( 0.171406, 113.473 )
+transform/scale = Vector2( 1, 2.86178 )
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
+
+[node name="right_wall" type="StaticBody2D" parent="." groups=[ "ignore" ]]
+
+transform/pos = Vector2( 324.517, 2.76852 )
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 2.88752, 1.97235, 111.955 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+one_way_collision/direction = Vector2( -1, 1 )
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall"]
+
+transform/pos = Vector2( 1.97235, 111.955 )
+transform/scale = Vector2( 1, 2.88752 )
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
+
+[node name="back_area" type="Area2D" parent="."]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.99369, 82.0272 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back_area"]
+
+transform/pos = Vector2( 2.99369, 82.0272 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+

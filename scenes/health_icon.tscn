@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://images/HUD/health_indicator.png" type="Texture" id=1]
+
+[node name="health_icon" type="Sprite"]
+
+texture = ExtResource( 1 )
+
+

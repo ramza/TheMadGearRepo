@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://scripts/act_intro.gd" type="Script" id=1]
+[ext_resource path="res://images/scenery/starry_sky.png" type="Texture" id=2]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=3]
+[ext_resource path="res://scenes/fire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/HUD/white_screen.png" type="Texture" id=5]
+[ext_resource path="res://images/HUD/black_bar.png" type="Texture" id=6]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=7]
+
+[node name="courtroom_intro" type="Node2D" groups=[
+"intros",
+]]
+
+z/z = 3
+script/script = ExtResource( 1 )
+map_index = 12
+
+[node name="sky" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+z/relative = false
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+z/z = -2
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 0, 153, 1, 154, 2, 153, 3, 154, 4, 153, 5, 154, 6, 153, 7, 154, 8, 153, 9, 154, 10, 153, 11, 154, 12, 153, 13, 154, 14, 153, 15, 154, 16, 153, 17, 154, 18, 153, 19, 154, 65536, 140, 65537, 140, 65538, 140, 65539, 140, 65540, 140, 65541, 140, 65542, 140, 65543, 140, 65544, 140, 65545, 142, 65546, 142, 65547, 142, 65548, 142, 65549, 142, 65550, 142, 65551, 142, 65552, 142, 65553, 142, 65554, 142, 65555, 142, 131072, 139, 131073, 139, 131074, 139, 131075, 139, 131076, 143, 131077, 144, 131078, 139, 131079, 139, 131080, 139, 131081, 141, 131082, 141, 131083, 141, 131084, 141, 131085, 141, 131086, 155, 131087, 156, 131088, 141, 131089, 141, 131090, 141, 131091, 141, 196608, 139, 196609, 139, 196610, 139, 196611, 139, 196612, 145, 196613, 146, 196614, 139, 196615, 139, 196616, 139, 196617, 141, 196618, 141, 196619, 141, 196620, 141, 196621, 141, 196622, 157, 196623, 158, 196624, 141, 196625, 141, 196626, 141, 196627, 141, 262144, 139, 262145, 139, 262146, 139, 262147, 167, 262148, 162, 262149, 163, 262150, 167, 262151, 139, 262152, 139, 262153, 141, 262154, 141, 262155, 160, 262156, 141, 262157, 141, 262158, 141, 262159, 141, 262160, 141, 262161, 141, 262162, 160, 262163, 141, 327680, 151, 327681, 151, 327682, 151, 327683, 166, 327684, 164, 327685, 165, 327686, 166, 327687, 151, 327688, 151, 327689, 151, 327690, 151, 327691, 159, 327692, 151, 327693, 151, 327694, 151, 327695, 151, 327696, 151, 327697, 151, 327698, 159, 327699, 151, 393216, 138, 393217, 138, 393218, 138, 393219, 138, 393220, 138, 393221, 138, 393222, 138, 393223, 138, 393224, 138, 393225, 138, 393226, 138, 393227, 138, 393228, 138, 393229, 138, 393230, 138, 393231, 138, 393232, 138, 393233, 138, 393234, 138, 393235, 138, 458752, 137, 458753, 137, 458754, 137, 458755, 137, 458756, 137, 458757, 137, 458758, 137, 458759, 137, 458760, 137, 458761, 137, 458762, 137, 458763, 137, 458764, 137, 458765, 137, 458766, 137, 458767, 137, 458768, 137, 458769, 137, 458770, 137, 458771, 137, 524288, 137, 524289, 137, 524290, 137, 524291, 137, 524292, 137, 524293, 137, 524294, 137, 524295, 137, 524296, 137, 524297, 137, 524298, 137, 524299, 137, 524300, 137, 524301, 137, 524302, 137, 524303, 137, 524304, 137, 524305, 137, 524306, 137, 524307, 137, 589824, 26, 589825, 13, 589826, 13, 589827, 12, 589828, 12, 589829, 12, 589830, 12, 589831, 12, 589832, 12, 589833, 12, 589834, 12, 589835, 12, 589836, 12, 589837, 12, 589838, 12, 589839, 12, 589840, 12, 589841, 12, 589842, 12, 589843, 12, 655360, 13, 655361, 13, 655362, 12, 655363, 13, 655364, 14, 655365, 12, 655366, 12, 655367, 12, 655368, 12, 655369, 12, 655370, 12, 655371, 12, 655372, 13, 655373, 12, 655374, 12, 655375, 12, 655376, 14, 655377, 12, 655378, 12, 655379, 12, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4 )
+
+[node name="fire" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 80, 84 )
+
+[node name="white_screen" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 5 )
+modulate = Color( 0.488281, 0, 0.457763, 0.213098 )
+
+[node name="black_bar" type="Sprite" parent="." groups=[
+"intros",
+]]
+
+transform/pos = Vector2( 152.685, 159.803 )
+transform/scale = Vector2( 1.06936, 2.43163 )
+texture = ExtResource( 6 )
+
+[node name="act" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 143.0
+margin/right = 77.0
+margin/bottom = 157.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Act IV"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="subtitle" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 159.0
+margin/right = 167.0
+margin/bottom = 173.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 0.82782, 0.152344, 1 )
+text = "I Dig Your Whig"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+
+

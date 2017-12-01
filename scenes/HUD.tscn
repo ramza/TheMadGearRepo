@@ -1,0 +1,517 @@
+[gd_scene load_steps=17 format=1]
+
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/black_screen.png" type="Texture" id=2]
+[ext_resource path="res://images/HUD/black_bar.png" type="Texture" id=3]
+[ext_resource path="res://images/HUD/one_p.png" type="Texture" id=4]
+[ext_resource path="res://images/HUD/special_bar.png" type="Texture" id=5]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://images/HUD/two_p.png" type="Texture" id=7]
+[ext_resource path="res://images/HUD/boss_nametag.png" type="Texture" id=8]
+[ext_resource path="res://images/HUD/ok.png" type="Texture" id=9]
+[ext_resource path="res://images/HUD/ready.png" type="Texture" id=10]
+[ext_resource path="res://other/press_start/PrStart.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "fade_in"
+length = 3.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("black_screen:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 1, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 160, 90 ), Vector2( 160, -90 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ok_icon:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("intro_text:visibility/opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("acts:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("black_screen:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 160, -90 ), Vector2( 160, 90 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ok_icon:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "ok_flash"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ok_icon:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.5 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 8
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 8
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 11 )
+
+[node name="HUD" type="CanvasLayer"]
+
+process/pause_mode = 2
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+
+visibility/opacity = 8.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 211.0
+margin/top = 23.0
+margin/right = 310.0
+margin/bottom = 171.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+process/pause_mode = 2
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+anims/ok_flash = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="black_screen" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="black_bar" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 10 )
+texture = ExtResource( 3 )
+
+[node name="player_one" type="Sprite" parent="."]
+
+transform/pos = Vector2( 10.2196, 7.00775 )
+texture = ExtResource( 4 )
+
+[node name="p1_health" type="Position2D" parent="."]
+
+transform/pos = Vector2( 18.4464, 7.11506 )
+
+[node name="special_bar" type="Sprite" parent="."]
+
+process/pause_mode = 2
+transform/pos = Vector2( 15.8943, 14.266 )
+texture = ExtResource( 5 )
+offset = Vector2( 20.0888, 0.00459766 )
+
+[node name="p1_score" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 57.0
+margin/top = 5.0
+margin/right = 85.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="p2_center" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 56.0825, 0 )
+
+[node name="p2_score" type="Label" parent="p2_center"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 206.0
+margin/top = 5.0
+margin/right = 234.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="p2_health" type="Position2D" parent="p2_center"]
+
+transform/pos = Vector2( 167.963, 6.7995 )
+
+[node name="2P" type="Sprite" parent="p2_center"]
+
+transform/pos = Vector2( 156.481, 7.00775 )
+texture = ExtResource( 7 )
+
+[node name="p2_special_bar" type="Sprite" parent="p2_center"]
+
+transform/pos = Vector2( 165.741, 14.266 )
+texture = ExtResource( 5 )
+offset = Vector2( 20.0888, 0.00459766 )
+
+[node name="boss_center" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( -160.922, 20.009 )
+
+[node name="health" type="Position2D" parent="boss_center"]
+
+transform/pos = Vector2( 197.641, 13.9263 )
+
+[node name="nametag" type="Sprite" parent="boss_center"]
+
+transform/pos = Vector2( 180, 13 )
+texture = ExtResource( 8 )
+
+[node name="ok_icon" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 287.519, 79.4584 )
+texture = ExtResource( 9 )
+
+[node name="reset_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="intro_text" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160.457, 94.4823 )
+texture = ExtResource( 10 )
+
+[node name="pause_label" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 138.0
+margin/top = 77.0
+margin/right = 178.0
+margin/bottom = 91.0
+custom_fonts/font = ExtResource( 6 )
+text = "Paused"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="acts" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 87.0
+margin/top = 114.0
+margin/right = 249.0
+margin/bottom = 145.0
+custom_fonts/font = ExtResource( 6 )
+text = "Act I"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="game_time" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 137.0
+margin/top = 5.0
+margin/right = 177.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "00:00"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="game_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 29.0
+margin/right = 506.0
+margin/bottom = 254.0
+custom_fonts/font = SubResource( 4 )
+text = "Punch 	=> z or <
+Kick 		=> x or >
+Charge	=> c or >
+Up 		=> w or up-arrow
+Down 	=> s or down-arrow
+Left		=> a or left-arrow
+Right	=> d or right-arrow
+
+Punch + Kcik => Special Attack
+Combo1 => Punch + Punch + Punch
+Combo2 => Jump + Kick + Kick
+Combo3 => Jump + Kick + Punch "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="fullscreen_box" type="CheckBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 288.0
+margin/top = 102.0
+margin/right = 314.0
+margin/bottom = 125.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="fullscreen_box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -57.0
+margin/top = 5.0
+margin/right = 9.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "Fullscreen"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="volume_control" type="Control" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 4.0
+margin/right = 42.0
+margin/bottom = 44.0
+
+[node name="Volume Control" type="Label" parent="volume_control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 214.0
+margin/top = 22.0
+margin/right = 263.0
+margin/bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "Volume Control"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="music" type="Label" parent="volume_control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 229.0
+margin/top = 40.0
+margin/right = 313.0
+margin/bottom = 54.0
+custom_fonts/font = ExtResource( 6 )
+text = "Music"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="music_slider" type="HSlider" parent="volume_control"]
+
+rect/min_size = Vector2( 100, 0 )
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 228.0
+margin/top = 52.0
+margin/right = 328.0
+margin/bottom = 68.0
+range/min = 0.0
+range/max = 3.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 3
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="fx" type="Label" parent="volume_control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 230.0
+margin/top = 66.0
+margin/right = 270.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 6 )
+text = "FX"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="fx_slider" type="HSlider" parent="volume_control"]
+
+rect/min_size = Vector2( 100, 0 )
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 229.0
+margin/top = 80.0
+margin/right = 329.0
+margin/bottom = 96.0
+range/min = 0.0
+range/max = 5.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 5
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="restart_btn" type="Button" parent="."]
+
+hint/tooltip = "Quit to OS"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 232.0
+margin/top = 145.0
+margin/right = 284.0
+margin/bottom = 159.0
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Reset"
+flat = false
+
+

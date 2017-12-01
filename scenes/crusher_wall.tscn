@@ -1,0 +1,280 @@
+[gd_scene load_steps=17 format=1]
+
+[ext_resource path="res://scripts/crusher_wall.gd" type="Script" id=1]
+[ext_resource path="res://audio/hurt4.wav" type="Sample" id=2]
+[ext_resource path="res://images/props/wall_shadow.png" type="Texture" id=3]
+[ext_resource path="res://images/props/crusher_wall.png" type="Texture" id=4]
+[ext_resource path="res://images/props/blue_beam.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "down"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wall:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "drop"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wall:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -104.392 ), Vector2( 0, 0.7351 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "rise"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wall:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -101.69 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "up"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wall:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -123.305 ) ]
+}
+
+[sub_resource type="SampleLibrary" id=5]
+
+samples/wall = {
+"db": 0.0,
+"pitch": 0.2,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -6.0591, 8.05744, 48.6608, 64.8752, 31.528, 64.0011, -23.7163, 8.58191 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -23.1762, -87.1799, 38.1511, -85.7579, 38.1511, 72.7372, -24.6392, 5.96637 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -23.1762, -87.1799, 38.1511, -85.7579, 38.1511, 72.7372, -24.6392, 5.96637 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -5.59332, -84.9357, 31.4437, -86.2046, 30.4683, 62.5369, -3.60306, 41.1142 )
+
+[sub_resource type="RectangleShape2D" id=10]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27.8309, 205.74 )
+
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27.831, 210.868 )
+
+[node name="crusher_wall" type="Node2D"]
+
+z/z = 1
+script/script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/down = SubResource( 1 )
+anims/drop = SubResource( 2 )
+anims/rise = SubResource( 3 )
+anims/up = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+transform/pos = Vector2( -80.7336, -40.5829 )
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 5 )
+config/pitch_random = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Shadow" type="Node2D" parent="."]
+
+z/relative = false
+
+[node name="Area2D" type="Area2D" parent="Shadow"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shadow/Area2D"]
+
+build_mode = 0
+polygon = Vector2Array( -23.7163, 8.58191, 31.528, 64.0011, 48.6608, 64.8752, -6.0591, 8.05744 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Sprite" type="Sprite" parent="Shadow"]
+
+transform/pos = Vector2( 27.0105, -5.16376 )
+texture = ExtResource( 3 )
+
+[node name="Wall" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( 0, -101.69 )
+input/pickable = false
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+
+[node name="wall" type="Sprite" parent="Wall"]
+
+transform/pos = Vector2( 26, -6 )
+texture = ExtResource( 4 )
+
+[node name="vertical" type="Sprite" parent="Wall"]
+
+transform/pos = Vector2( 45.0194, -7.46304 )
+z/z = 10
+texture = ExtResource( 5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
+
+build_mode = 0
+polygon = Vector2Array( -24.6392, 5.96637, 38.1511, 72.7372, 38.1511, -85.7579, -23.1762, -87.1799 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Area2D" type="Area2D" parent="Wall"]
+
+transform/pos = Vector2( 15.9221, 0.663422 )
+input/pickable = true
+shapes/0/shape = SubResource( 9 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="collision_polygon1" type="CollisionPolygon2D" parent="Wall/Area2D"]
+
+build_mode = 0
+polygon = Vector2Array( -3.60306, 41.1142, 30.4683, 62.5369, 31.4437, -86.2046, -5.59332, -84.9357 )
+shape_range = Vector2( 0, 0 )
+trigger = true
+
+[node name="activation_zone" type="Area2D" parent="."]
+
+transform/pos = Vector2( 0, -59.5424 )
+input/pickable = true
+shapes/0/shape = SubResource( 10 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -59.8565, 51.6943 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="activation_zone"]
+
+transform/pos = Vector2( -59.8565, 51.6943 )
+shape = SubResource( 10 )
+trigger = true
+_update_shape_index = 0
+
+[node name="killzone" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 11 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 361.86, -1.36038 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+
+transform/pos = Vector2( 361.86, -1.36038 )
+shape = SubResource( 11 )
+trigger = true
+_update_shape_index = 0
+
+

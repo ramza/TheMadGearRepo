@@ -1,0 +1,174 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=1]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=4]
+[ext_resource path="res://scenes/prison_door.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[node name="city_3" type="Node2D" groups=[
+"boss",
+]]
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 103.648, 97.0323 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 4, 2, 4, 3, 4, 4, 54, 5, 54, 6, 54, 7, 54, 8, 54, 9, 54, 10, 54, 11, 54, 12, 54, 13, 54, 14, 54, 15, 54, 16, 4, 17, 4, 18, 4, 19, 4, 20, 4, 21, 54, 22, 54, 23, 54, 24, 54, 25, 54, 26, 54, 27, 54, 28, 54, 131071, 4, 65536, 4, 65537, 4, 65538, 54, 65539, 54, 65540, 54, 65541, 54, 65542, 54, 65543, 54, 65544, 54, 65545, 54, 65546, 54, 65547, 54, 65548, 54, 65549, 54, 65550, 54, 65551, 54, 65552, 4, 65553, 4, 65554, 4, 65555, 4, 65556, 4, 65557, 54, 65558, 54, 65559, 54, 65560, 54, 65561, 54, 65562, 54, 65563, 54, 65564, 54, 196607, 4, 131072, 4, 131073, 4, 131074, 54, 131075, 54, 131076, 54, 131077, 54, 131078, 54, 131079, 54, 131080, 54, 131081, 54, 131082, 54, 131083, 54, 131084, 54, 131085, 54, 131086, 54, 131087, 54, 131088, 4, 131089, 4, 131090, 4, 131091, 4, 131092, 4, 131093, 54, 131094, 54, 131095, 54, 131096, 54, 131097, 54, 131098, 54, 131099, 54, 131100, 54, 262143, 4, 196608, 4, 196609, 4, 196610, 54, 196611, 54, 196612, 54, 196613, 54, 196614, 54, 196615, 54, 196616, 54, 196617, 54, 196618, 54, 196619, 54, 196620, 54, 196621, 104, 196622, 54, 196623, 54, 196624, 4, 196625, 4, 196626, 4, 196627, 4, 196628, 4, 196629, 54, 196630, 54, 196631, 54, 196632, 54, 196633, 54, 196634, 54, 196635, 54, 196636, 54, 327679, 4, 262144, 4, 262145, 4, 262146, 54, 262147, 1, 262148, 54, 262149, 4, 262150, 54, 262151, 54, 262152, 54, 262153, 54, 262154, 54, 262155, 54, 262156, 54, 262157, 4, 262158, 54, 262159, 54, 262160, 4, 262161, 4, 262162, 4, 262163, 4, 262164, 4, 262165, 54, 262166, 54, 262167, 54, 262168, 54, 262169, 54, 262170, 54, 262171, 54, 262172, 54, 393215, 4, 327680, 4, 327681, 4, 327682, 54, 327683, 1, 327684, 54, 327685, 4, 327686, 54, 327687, 54, 327688, 54, 327689, 54, 327690, 54, 327691, 54, 327692, 54, 327693, 4, 327694, 54, 327695, 54, 327696, 4, 327697, 4, 327698, 4, 327699, 4, 327700, 4, 327701, 54, 327702, 54, 327703, 54, 327704, 54, 327705, 54, 327706, 54, 327707, 54, 327708, 54, 458751, 4, 393216, 4, 393217, 23, 393218, 10, 393219, 10, 393220, 10, 393221, 10, 393222, 10, 393223, 10, 393224, 10, 393225, 10, 393226, 10, 393227, 10, 393228, 10, 393229, 10, 393230, 10, 393231, 10, 393232, 22, 393233, 4, 393234, 4, 393235, 4, 393236, 4, 393237, 54, 393238, 54, 393239, 54, 393240, 54, 393241, 54, 393242, 54, 393243, 54, 393244, 54, 524287, 4, 458752, 23, 458753, 12, 458754, 12, 458755, 12, 458756, 12, 458757, 12, 458758, 12, 458759, 12, 458760, 12, 458761, 12, 458762, 12, 458763, 12, 458764, 12, 458765, 12, 458766, 12, 458767, 12, 458768, 12, 458769, 22, 458770, 4, 458771, 4, 458772, 4, 458773, 54, 458774, 54, 458775, 54, 458776, 54, 458777, 54, 458778, 54, 458779, 54, 458780, 54, 589823, 23, 524288, 12, 524289, 12, 524290, 12, 524291, 12, 524292, 12, 524293, 12, 524294, 12, 524295, 12, 524296, 12, 524297, 12, 524298, 12, 524299, 12, 524300, 12, 524301, 12, 524302, 12, 524303, 12, 524304, 12, 524305, 12, 524306, 22, 524307, 4, 524308, 4, 524309, 54, 524310, 54, 524311, 54, 524312, 54, 524313, 54, 524314, 54, 524315, 54, 524316, 54, 655359, 13, 589824, 12, 589825, 12, 589826, 12, 589827, 12, 589828, 12, 589829, 12, 589830, 12, 589831, 12, 589832, 12, 589833, 12, 589834, 12, 589835, 12, 589836, 12, 589837, 12, 589838, 12, 589839, 12, 589840, 12, 589841, 12, 589842, 12, 589843, 22, 589844, 4, 589845, 54, 589846, 54, 589847, 54, 589848, 54, 589849, 54, 589850, 54, 589851, 54, 589852, 54, 720895, 13, 655360, 12, 655361, 12, 655362, 12, 655363, 12, 655364, 12, 655365, 12, 655366, 12, 655367, 12, 655368, 12, 655369, 12, 655370, 12, 655371, 12, 655372, 12, 655373, 12, 655374, 12, 655375, 12, 655376, 12, 655377, 12, 655378, 12, 655379, 12, 655380, 22, 655381, 54, 655382, 54, 655383, 54, 655384, 54, 655385, 54, 655386, 54, 655387, 54, 655388, 54, 786431, 4, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4, 720916, 4, 720917, 4, 720918, 4, 720919, 4, 720920, 4, 720921, 4, 720922, 4, 720923, 4, 720924, 4 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 2 )]
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="enemy_spawn" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 104.383, 59.5426 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 4 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = true
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 177.617, 94.4574 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 177.617, 94.4574 )
+
+[node name="door" parent="enemy_spawn" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 111.617, 20.4574 )
+map_index = 20
+
+[node name="enemy_spawn1" type="Area2D" parent="."]
+
+transform/pos = Vector2( 104.383, 59.5426 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 4 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = true
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 5
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( 145.617, 62.4574 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( 115.68, 87.8713 )
+
+[node name="spawn_point3" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( 145.617, 94.4574 )
+
+[node name="spawn_point4" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( 103.705, 55.5396 )
+
+[node name="spawn_point5" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( 85.7434, 90.865 )
+
+

@@ -1,0 +1,308 @@
+[gd_scene load_steps=16 format=1]
+
+[ext_resource path="res://scripts/player_select.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/black_screen.png" type="Texture" id=2]
+[ext_resource path="res://images/cutscenes/shreddy_portrait.png" type="Texture" id=3]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://images/cutscenes/rex_portrait.png" type="Texture" id=5]
+[ext_resource path="res://images/cutscenes/bigvig_portrait.png" type="Texture" id=6]
+[ext_resource path="res://images/cutscenes/bruce_portrait.png" type="Texture" id=7]
+[ext_resource path="res://images/cutscenes/miles_portrait.png" type="Texture" id=8]
+[ext_resource path="res://images/HUD/selection_box.png" type="Texture" id=9]
+[ext_resource path="res://audio/misc_fight_sounds/Air Swing 1.wav" type="Sample" id=10]
+[ext_resource path="res://audio/select.wav" type="Sample" id=11]
+[ext_resource path="res://images/HUD/back.png" type="Texture" id=12]
+[ext_resource path="res://images/HUD/z_button.png" type="Texture" id=13]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/blip = { "db":0.0, "pitch":1.0, "sample":ExtResource( 10 ) }
+samples/select = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "fade_in"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 160, 90 ), Vector2( -163.36, 90 ) ] }
+
+[node name="player_select" type="Node2D" groups=[ "title" ]]
+
+script/script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="shreddy" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 46.2018, 61.4433 )
+texture = ExtResource( 3 )
+
+[node name="name" type="Label" parent="shreddy"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -28.0
+margin/top = 35.0
+margin/right = 32.0
+margin/bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Shreddy Krueger"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="rex" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 102.538, 61.4433 )
+texture = ExtResource( 5 )
+
+[node name="name" type="Label" parent="rex"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -28.0
+margin/top = 35.0
+margin/right = 32.0
+margin/bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Rex Skeleton"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="big" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 157.995, 61.4433 )
+texture = ExtResource( 6 )
+
+[node name="name" type="Label" parent="big"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -30.0
+margin/top = 35.0
+margin/right = 30.0
+margin/bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Bigvig"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="bruce" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 214.331, 61.4433 )
+texture = ExtResource( 7 )
+
+[node name="name" type="Label" parent="bruce"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -30.0
+margin/top = 35.0
+margin/right = 30.0
+margin/bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Bruce Irons"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="miles" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 272.868, 61.4433 )
+texture = ExtResource( 8 )
+
+[node name="name" type="Label" parent="miles"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -32.0
+margin/top = 35.0
+margin/right = 39.0
+margin/bottom = 73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Miles Strongarm"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="selection_box" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 46.1323, 61.4354 )
+texture = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="selection_box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -19.0
+margin/top = -42.0
+margin/right = 19.0
+margin/bottom = -28.0
+custom_fonts/font = ExtResource( 4 )
+text = "p1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="selection_box2" type="Sprite" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 102.538, 61.4433 )
+texture = ExtResource( 9 )
+
+[node name="Label1" type="Label" parent="selection_box2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = -43.0
+margin/right = 18.0
+margin/bottom = -29.0
+custom_fonts/font = ExtResource( 4 )
+text = "p2"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="action_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="p2_action_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 2
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
+
+[node name="back_btn" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 82.272, 157.786 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="back_btn"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -43.0
+margin/top = -7.0
+margin/right = -3.0
+margin/bottom = 7.0
+custom_fonts/font = ExtResource( 4 )
+text = "back"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="next_btn" type="Sprite" parent="."]
+
+transform/pos = Vector2( 250.876, 157.786 )
+texture = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="next_btn"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -43.0
+margin/top = -7.0
+margin/right = -3.0
+margin/bottom = 7.0
+custom_fonts/font = ExtResource( 4 )
+text = "next"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 111.0
+margin/top = 5.0
+margin/right = 232.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "choose your player"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="black_screen" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="black_screen"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fade_in = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "fade_in"
+
+

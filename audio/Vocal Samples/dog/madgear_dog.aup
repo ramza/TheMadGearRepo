@@ -1,0 +1,154 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="madgear_dog_data" version="1.3.0" audacityversion="2.1.3" sel0="0.0000000000" sel1="86.7787755102" vpos="0" h="0.0000000000" zoom="20.2238391782" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="major_brand" value="dash"/>
+		<tag name="Software" value="Lavf57.19.100"/>
+		<tag name="minor_version" value="0"/>
+		<tag name="compatible_brands" value="iso6mp41"/>
+	</tags>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="0" linked="1" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="3826944">
+				<waveblock start="0">
+					<simpleblockfile filename="e000076b.au" len="262144" min="-0.506892" max="0.604356" rms="0.044471"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e000075d.au" len="262144" min="-0.599849" max="0.604261" rms="0.062344"/>
+				</waveblock>
+				<waveblock start="524288">
+					<simpleblockfile filename="e0000bd9.au" len="262144" min="-0.500417" max="0.524843" rms="0.071252"/>
+				</waveblock>
+				<waveblock start="786432">
+					<simpleblockfile filename="e000045c.au" len="262144" min="-0.539296" max="0.612722" rms="0.070178"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<simpleblockfile filename="e0000b6f.au" len="262144" min="-0.575809" max="0.596079" rms="0.050744"/>
+				</waveblock>
+				<waveblock start="1310720">
+					<simpleblockfile filename="e00007ad.au" len="262144" min="-0.608616" max="0.579589" rms="0.060153"/>
+				</waveblock>
+				<waveblock start="1572864">
+					<simpleblockfile filename="e0000c0d.au" len="262144" min="-0.620694" max="0.552214" rms="0.058616"/>
+				</waveblock>
+				<waveblock start="1835008">
+					<simpleblockfile filename="e000092b.au" len="262144" min="-0.589507" max="0.587277" rms="0.072041"/>
+				</waveblock>
+				<waveblock start="2097152">
+					<simpleblockfile filename="e0000a23.au" len="262144" min="-0.575201" max="0.612381" rms="0.06615"/>
+				</waveblock>
+				<waveblock start="2359296">
+					<simpleblockfile filename="e0000322.au" len="262144" min="-0.530438" max="0.560932" rms="0.063945"/>
+				</waveblock>
+				<waveblock start="2621440">
+					<simpleblockfile filename="e0000fe1.au" len="262144" min="-0.613257" max="0.572709" rms="0.06877"/>
+				</waveblock>
+				<waveblock start="2883584">
+					<simpleblockfile filename="e00006b9.au" len="262144" min="-0.510559" max="0.563794" rms="0.062426"/>
+				</waveblock>
+				<waveblock start="3145728">
+					<simpleblockfile filename="e0000433.au" len="262144" min="-0.618317" max="0.581412" rms="0.060114"/>
+				</waveblock>
+				<waveblock start="3407872">
+					<simpleblockfile filename="e0000906.au" len="262144" min="-0.508752" max="0.570537" rms="0.058845"/>
+				</waveblock>
+				<waveblock start="3670016">
+					<simpleblockfile filename="e0000006.au" len="156928" min="-0.38664" max="0.485122" rms="0.016706"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="1" linked="0" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="3826944">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000f44.au" len="262144" min="-0.562439" max="0.594731" rms="0.044759"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0000c34.au" len="262144" min="-0.535976" max="0.579674" rms="0.062742"/>
+				</waveblock>
+				<waveblock start="524288">
+					<simpleblockfile filename="e0000c15.au" len="262144" min="-0.512828" max="0.580999" rms="0.071343"/>
+				</waveblock>
+				<waveblock start="786432">
+					<simpleblockfile filename="e000025d.au" len="262144" min="-0.551979" max="0.618897" rms="0.069827"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<simpleblockfile filename="e000030e.au" len="262144" min="-0.568117" max="0.595496" rms="0.051012"/>
+				</waveblock>
+				<waveblock start="1310720">
+					<simpleblockfile filename="e0000535.au" len="262144" min="-0.611142" max="0.592005" rms="0.060373"/>
+				</waveblock>
+				<waveblock start="1572864">
+					<simpleblockfile filename="e0000832.au" len="262144" min="-0.562193" max="0.550671" rms="0.058375"/>
+				</waveblock>
+				<waveblock start="1835008">
+					<simpleblockfile filename="e0000df7.au" len="262144" min="-0.532556" max="0.575633" rms="0.07214"/>
+				</waveblock>
+				<waveblock start="2097152">
+					<simpleblockfile filename="e00005cf.au" len="262144" min="-0.574354" max="0.649063" rms="0.066095"/>
+				</waveblock>
+				<waveblock start="2359296">
+					<simpleblockfile filename="e0000a28.au" len="262144" min="-0.579776" max="0.55527" rms="0.064103"/>
+				</waveblock>
+				<waveblock start="2621440">
+					<simpleblockfile filename="e000013e.au" len="262144" min="-0.533598" max="0.606275" rms="0.068295"/>
+				</waveblock>
+				<waveblock start="2883584">
+					<simpleblockfile filename="e0000746.au" len="262144" min="-0.522048" max="0.644668" rms="0.062466"/>
+				</waveblock>
+				<waveblock start="3145728">
+					<simpleblockfile filename="e00005b4.au" len="262144" min="-0.621821" max="0.659597" rms="0.060135"/>
+				</waveblock>
+				<waveblock start="3407872">
+					<simpleblockfile filename="e0000c57.au" len="262144" min="-0.536734" max="0.593715" rms="0.058517"/>
+				</waveblock>
+				<waveblock start="3670016">
+					<simpleblockfile filename="e0000d3f.au" len="156928" min="-0.399988" max="0.525785" rms="0.017233"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="0" linked="1" mute="0" solo="1" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="100307">
+				<waveblock start="0">
+					<simpleblockfile filename="e000079c.au" len="100307" min="-0.111597" max="0.11718" rms="0.021989"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="1" linked="0" mute="0" solo="1" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="100307">
+				<waveblock start="0">
+					<simpleblockfile filename="e00009ec.au" len="100307" min="-0.114601" max="0.119615" rms="0.022159"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="0" linked="1" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="71960">
+				<waveblock start="0">
+					<simpleblockfile filename="e000004d.au" len="71960" min="-0.369663" max="0.334054" rms="0.057688"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Guard Dog Growl and bark SOUND EFFECT" channel="1" linked="0" mute="1" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="71960">
+				<waveblock start="0">
+					<simpleblockfile filename="e00008a3.au" len="71960" min="-0.442609" max="0.425888" rms="0.058316"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

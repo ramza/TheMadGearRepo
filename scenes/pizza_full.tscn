@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/food.gd" type="Script" id=1]
+[ext_resource path="res://images/props/food.png" type="Texture" id=2]
+[ext_resource path="res://audio/powerup.wav" type="Sample" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5.98489, 2.53866 )
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/powerup = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+
+[node name="pizza_full" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.284794, -1.06619 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+health_bonus = 10
+type = "burger"
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -0.284794, -1.06619 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
+

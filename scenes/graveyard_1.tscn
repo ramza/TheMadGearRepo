@@ -1,0 +1,1280 @@
+[gd_scene load_steps=26 format=1]
+
+[ext_resource path="res://images/scenery/starry_sky.png" type="Texture" id=1]
+[ext_resource path="res://images/scenery/moon.png" type="Texture" id=2]
+[ext_resource path="res://images/scenery/dark_clouds.png" type="Texture" id=3]
+[ext_resource path="res://images/scenery/trees.png" type="Texture" id=4]
+[ext_resource path="res://images/scenery/fence.png" type="Texture" id=5]
+[ext_resource path="res://images/props/cross.png" type="Texture" id=6]
+[ext_resource path="res://images/props/gravestone.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Bats.tscn" type="PackedScene" id=8]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=9]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://images/scenery/rain_drop.png" type="Texture" id=12]
+[ext_resource path="res://audio/effects/rain.ogg" type="AudioStream" id=13]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=14]
+[ext_resource path="res://scenes/prison_door.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/vending_machine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/chicken.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/pizza_slice.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/energy_bottle.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/broken_wall_graveyard.tscn" type="PackedScene" id=20]
+[ext_resource path="res://images/props/big_tree.png" type="Texture" id=21]
+[ext_resource path="res://scenes/green_skull.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/spikes.tscn" type="PackedScene" id=23]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[node name="graveyard_1" type="Node2D" groups=[
+"graveyard",
+]]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/sky"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 1 )
+
+[node name="moon" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.1, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/moon"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.2, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/clouds"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 3 )
+
+[node name="trees" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.3, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/trees"]
+
+transform/pos = Vector2( 160, 95.9874 )
+texture = ExtResource( 4 )
+
+[node name="fence" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.4, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/fence"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 5 )
+
+[node name="ornaments" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0.5, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 320, 0 )
+
+[node name="cross" type="Sprite" parent="ParallaxBackground/ornaments"]
+
+transform/pos = Vector2( 141.296, 93.1135 )
+texture = ExtResource( 6 )
+
+[node name="headstone" type="Sprite" parent="ParallaxBackground/ornaments"]
+
+transform/pos = Vector2( 281.792, 95.1429 )
+texture = ExtResource( 7 )
+
+[node name="Bats" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 503.068, 78.8955 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 9 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65534, 4, 65535, 4, 131070, 4, 131071, 4, 65676, 132, 65677, 132, 65678, 132, 65679, 132, 65680, 79, 65681, 79, 65682, 79, 65683, 79, 65684, 79, 65685, 79, 65686, 79, 65687, 79, 196606, 4, 196607, 4, 131212, 132, 131213, 132, 131214, 132, 131215, 132, 131216, 79, 131217, 79, 131218, 79, 131219, 79, 131220, 79, 131221, 79, 131222, 79, 131223, 79, 262142, 4, 262143, 4, 196636, 87, 196637, 88, 196638, 88, 196639, 88, 196640, 88, 196641, 88, 196642, 88, 196643, 88, 196644, 88, 196645, 88, 196646, 88, 196647, 89, 196673, 84, 196674, 85, 196675, 86, 196684, 87, 196685, 88, 196686, 88, 196687, 88, 196688, 88, 196689, 88, 196690, 88, 196691, 88, 196692, 88, 196693, 89, 196734, 87, 196735, 88, 196736, 88, 196737, 88, 196738, 88, 196739, 88, 196740, 88, 196741, 89, 196748, 132, 196749, 132, 196750, 132, 196751, 132, 196752, 79, 196753, 79, 196754, 79, 196755, 79, 196756, 79, 196757, 79, 196758, 79, 196759, 79, 327678, 4, 327679, 4, 262173, 80, 262174, 78, 262175, 90, 262176, 78, 262177, 78, 262178, 78, 262179, 78, 262180, 79, 262181, 78, 262182, 79, 262209, 80, 262210, 91, 262211, 81, 262221, 80, 262222, 90, 262223, 78, 262224, 78, 262225, 78, 262226, 78, 262227, 79, 262228, 81, 262270, 80, 262271, 90, 262272, 82, 262273, 91, 262274, 91, 262275, 83, 262276, 104, 262277, 81, 262284, 132, 262285, 132, 262286, 132, 262287, 132, 262288, 79, 262289, 79, 262290, 79, 262291, 79, 262292, 79, 262293, 79, 262294, 79, 262295, 79, 393214, 4, 393215, 4, 327684, 76, 327690, 76, 327700, 75, 327703, 75, 327707, 76, 327708, 76, 327709, 80, 327710, 78, 327711, 79, 327712, 82, 327713, 91, 327714, 91, 327715, 83, 327716, 188, 327717, 189, 327718, 79, 327719, 76, 327722, 75, 327725, 76, 327730, 76, 327734, 76, 327735, 76, 327737, 75, 327744, 76, 327745, 80, 327746, 92, 327747, 81, 327750, 75, 327754, 76, 327755, 76, 327757, 80, 327758, 79, 327759, 82, 327760, 91, 327761, 91, 327762, 83, 327763, 79, 327764, 81, 327765, 77, 327766, 76, 327767, 76, 327769, 75, 327773, 76, 327776, 76, 327777, 76, 327778, 76, 327779, 76, 327780, 77, 327782, 76, 327784, 75, 327786, 76, 327789, 75, 327790, 76, 327795, 76, 327796, 76, 327797, 75, 327798, 76, 327799, 76, 327802, 77, 327803, 76, 327804, 76, 327805, 76, 327806, 188, 327807, 189, 327808, 82, 327809, 92, 327810, 92, 327811, 83, 327812, 4, 327813, 81, 327814, 76, 327815, 76, 327816, 76, 327818, 76, 327820, 132, 327821, 132, 327822, 132, 327823, 132, 327824, 79, 327825, 79, 327826, 79, 327827, 79, 327828, 79, 327829, 79, 327830, 79, 327831, 79, 458750, 4, 458751, 4, 393216, 74, 393217, 74, 393218, 74, 393219, 74, 393220, 74, 393221, 74, 393222, 74, 393223, 74, 393224, 74, 393225, 74, 393226, 74, 393227, 74, 393228, 74, 393229, 74, 393230, 74, 393231, 74, 393232, 74, 393233, 74, 393234, 74, 393235, 74, 393236, 74, 393237, 74, 393238, 74, 393239, 74, 393240, 74, 393241, 77, 393242, 74, 393243, 74, 393244, 74, 393245, 80, 393246, 78, 393247, 79, 393248, 82, 393249, 92, 393250, 92, 393251, 83, 393252, 190, 393253, 191, 393254, 79, 393255, 74, 393256, 74, 393257, 77, 393258, 74, 393259, 74, 393260, 74, 393261, 74, 393262, 73, 393263, 73, 393264, 73, 393265, 74, 393266, 74, 393267, 74, 393268, 74, 393269, 74, 393270, 74, 393271, 74, 393272, 74, 393273, 74, 393274, 74, 393275, 74, 393276, 73, 393277, 73, 393278, 73, 393279, 73, 393280, 74, 393281, 73, 393282, 73, 393283, 74, 393284, 77, 393285, 74, 393286, 74, 393287, 74, 393288, 77, 393289, 74, 393290, 74, 393291, 74, 393292, 74, 393293, 80, 393294, 79, 393295, 82, 393296, 92, 393297, 92, 393298, 83, 393299, 79, 393300, 81, 393301, 74, 393302, 74, 393303, 74, 393304, 74, 393305, 74, 393306, 74, 393307, 74, 393308, 74, 393309, 73, 393310, 73, 393311, 73, 393312, 74, 393313, 74, 393314, 74, 393315, 74, 393316, 74, 393317, 74, 393318, 74, 393319, 74, 393320, 74, 393321, 74, 393322, 74, 393323, 74, 393324, 74, 393325, 73, 393326, 73, 393327, 73, 393328, 73, 393329, 77, 393330, 77, 393331, 73, 393332, 74, 393333, 74, 393334, 74, 393335, 74, 393336, 74, 393337, 74, 393338, 74, 393339, 74, 393340, 74, 393341, 74, 393342, 190, 393343, 191, 393344, 82, 393345, 92, 393346, 92, 393347, 83, 393348, 4, 393349, 81, 393350, 74, 393351, 74, 393352, 74, 393353, 77, 393354, 74, 393355, 74, 393356, 132, 393357, 132, 393358, 132, 393359, 132, 393360, 79, 393361, 79, 393362, 79, 393363, 79, 393364, 79, 393365, 79, 393366, 79, 393367, 79, 524286, 4, 524287, 4, 458752, 71, 458753, 71, 458754, 71, 458755, 71, 458756, 71, 458757, 71, 458758, 71, 458759, 71, 458760, 71, 458761, 71, 458762, 71, 458763, 71, 458764, 71, 458765, 71, 458766, 71, 458767, 71, 458768, 71, 458769, 71, 458770, 71, 458771, 71, 458772, 71, 458773, 71, 458774, 71, 458775, 71, 458776, 71, 458777, 71, 458778, 71, 458779, 71, 458780, 71, 458781, 71, 458782, 71, 458783, 71, 458784, 71, 458785, 71, 458786, 71, 458787, 71, 458788, 71, 458789, 71, 458790, 71, 458791, 71, 458792, 71, 458793, 71, 458794, 71, 458795, 71, 458796, 71, 458797, 71, 458798, 71, 458799, 71, 458800, 71, 458801, 97, 458802, 97, 458803, 97, 458804, 97, 458805, 97, 458806, 97, 458807, 97, 458808, 71, 458809, 71, 458810, 71, 458811, 71, 458812, 71, 458813, 71, 458814, 71, 458815, 71, 458816, 71, 458817, 71, 458818, 71, 458819, 71, 458820, 71, 458821, 71, 458822, 71, 458823, 71, 458824, 71, 458825, 71, 458826, 71, 458827, 71, 458828, 71, 458829, 71, 458830, 71, 458831, 71, 458832, 71, 458833, 71, 458834, 71, 458835, 71, 458836, 71, 458837, 71, 458838, 71, 458839, 71, 458840, 71, 458841, 71, 458842, 71, 458843, 71, 458844, 71, 458845, 71, 458846, 71, 458847, 71, 458848, 97, 458849, 97, 458850, 97, 458851, 97, 458852, 97, 458853, 97, 458854, 97, 458855, 71, 458856, 71, 458857, 71, 458858, 71, 458859, 71, 458860, 71, 458861, 71, 458862, 71, 458863, 71, 458864, 71, 458865, 71, 458866, 71, 458867, 71, 458868, 71, 458869, 71, 458870, 71, 458871, 71, 458872, 71, 458873, 71, 458874, 71, 458875, 71, 458876, 71, 458877, 71, 458878, 71, 458879, 71, 458880, 71, 458881, 71, 458882, 71, 458883, 71, 458884, 71, 458885, 71, 458886, 71, 458887, 71, 458888, 71, 458889, 71, 458890, 71, 458891, 71, 458892, 182, 458893, 132, 458894, 132, 458895, 132, 458896, 79, 458897, 79, 458898, 79, 458899, 79, 458900, 79, 458901, 79, 458902, 79, 458903, 79, 589822, 4, 589823, 4, 524288, 69, 524289, 69, 524290, 69, 524291, 69, 524292, 69, 524293, 69, 524294, 69, 524295, 69, 524296, 69, 524297, 69, 524298, 69, 524299, 69, 524300, 69, 524301, 69, 524302, 69, 524303, 69, 524304, 69, 524305, 69, 524306, 69, 524307, 69, 524308, 69, 524309, 69, 524310, 69, 524311, 69, 524312, 69, 524313, 69, 524314, 69, 524315, 69, 524316, 69, 524317, 69, 524318, 69, 524319, 69, 524320, 69, 524321, 69, 524322, 69, 524323, 69, 524324, 69, 524325, 69, 524326, 69, 524327, 69, 524328, 69, 524329, 69, 524330, 69, 524331, 69, 524332, 69, 524333, 69, 524334, 69, 524335, 69, 524336, 95, 524337, 96, 524338, 96, 524339, 96, 524340, 96, 524341, 96, 524342, 96, 524343, 103, 524344, 69, 524345, 69, 524346, 69, 524347, 69, 524348, 69, 524349, 69, 524350, 69, 524351, 69, 524352, 69, 524353, 69, 524354, 69, 524355, 69, 524356, 69, 524357, 69, 524358, 69, 524359, 69, 524360, 69, 524361, 69, 524362, 69, 524363, 69, 524364, 69, 524365, 69, 524366, 69, 524367, 69, 524368, 69, 524369, 69, 524370, 69, 524371, 69, 524372, 69, 524373, 69, 524374, 69, 524375, 69, 524376, 69, 524377, 69, 524378, 69, 524379, 69, 524380, 69, 524381, 69, 524382, 69, 524383, 95, 524384, 96, 524385, 96, 524386, 96, 524387, 96, 524388, 96, 524389, 96, 524390, 103, 524391, 69, 524392, 69, 524393, 69, 524394, 69, 524395, 69, 524396, 69, 524397, 69, 524398, 69, 524399, 69, 524400, 69, 524401, 69, 524402, 69, 524403, 69, 524404, 69, 524405, 69, 524406, 69, 524407, 69, 524408, 69, 524409, 69, 524410, 69, 524411, 69, 524412, 69, 524413, 69, 524414, 69, 524415, 69, 524416, 69, 524417, 69, 524418, 69, 524419, 69, 524420, 69, 524421, 69, 524422, 69, 524423, 69, 524424, 69, 524425, 69, 524426, 69, 524427, 69, 524428, 69, 524429, 130, 524430, 132, 524431, 132, 524432, 79, 524433, 79, 524434, 79, 524435, 79, 524436, 79, 524437, 79, 524438, 79, 524439, 79, 655358, 4, 655359, 4, 589824, 70, 589825, 70, 589826, 70, 589827, 70, 589828, 70, 589829, 70, 589830, 70, 589831, 70, 589832, 70, 589833, 70, 589834, 70, 589835, 70, 589836, 70, 589837, 70, 589838, 70, 589839, 70, 589840, 70, 589841, 70, 589842, 70, 589843, 70, 589844, 70, 589845, 70, 589846, 70, 589847, 70, 589848, 70, 589849, 70, 589850, 70, 589851, 70, 589852, 70, 589853, 70, 589854, 70, 589855, 70, 589856, 70, 589857, 70, 589858, 70, 589859, 70, 589860, 70, 589861, 70, 589862, 70, 589863, 70, 589864, 70, 589865, 70, 589866, 70, 589867, 70, 589868, 70, 589869, 70, 589870, 70, 589871, 93, 589872, 94, 589873, 94, 589874, 94, 589875, 94, 589876, 94, 589877, 94, 589878, 102, 589879, 70, 589880, 70, 589881, 70, 589882, 70, 589883, 70, 589884, 70, 589885, 70, 589886, 70, 589887, 70, 589888, 70, 589889, 70, 589890, 70, 589891, 70, 589892, 70, 589893, 70, 589894, 70, 589895, 70, 589896, 70, 589897, 70, 589898, 70, 589899, 70, 589900, 70, 589901, 70, 589902, 70, 589903, 70, 589904, 70, 589905, 70, 589906, 70, 589907, 70, 589908, 70, 589909, 70, 589910, 70, 589911, 70, 589912, 70, 589913, 70, 589914, 70, 589915, 70, 589916, 70, 589917, 70, 589918, 93, 589919, 94, 589920, 94, 589921, 94, 589922, 94, 589923, 94, 589924, 94, 589925, 102, 589926, 70, 589927, 70, 589928, 70, 589929, 70, 589930, 70, 589931, 70, 589932, 70, 589933, 70, 589934, 70, 589935, 70, 589936, 70, 589937, 70, 589938, 70, 589939, 70, 589940, 70, 589941, 70, 589942, 70, 589943, 70, 589944, 70, 589945, 70, 589946, 70, 589947, 70, 589948, 70, 589949, 70, 589950, 70, 589951, 70, 589952, 70, 589953, 70, 589954, 70, 589955, 70, 589956, 70, 589957, 70, 589958, 70, 589959, 70, 589960, 70, 589961, 70, 589962, 70, 589963, 70, 589964, 70, 589965, 70, 589966, 134, 589967, 132, 589968, 79, 589969, 79, 589970, 79, 589971, 79, 589972, 79, 589973, 79, 589974, 79, 589975, 79, 720894, 4, 720895, 4, 655360, 72, 655361, 72, 655362, 72, 655363, 72, 655364, 72, 655365, 72, 655366, 72, 655367, 72, 655368, 72, 655369, 72, 655370, 72, 655371, 72, 655372, 72, 655373, 72, 655374, 72, 655375, 72, 655376, 72, 655377, 72, 655378, 72, 655379, 72, 655380, 72, 655381, 72, 655382, 72, 655383, 72, 655384, 72, 655385, 72, 655386, 72, 655387, 72, 655388, 72, 655389, 72, 655390, 72, 655391, 72, 655392, 72, 655393, 72, 655394, 72, 655395, 72, 655396, 72, 655397, 72, 655398, 72, 655399, 72, 655400, 72, 655401, 72, 655402, 72, 655403, 72, 655404, 72, 655405, 72, 655406, 101, 655407, 99, 655408, 99, 655409, 99, 655410, 99, 655411, 99, 655412, 99, 655413, 99, 655414, 72, 655415, 72, 655416, 72, 655417, 72, 655418, 72, 655419, 72, 655420, 72, 655421, 72, 655422, 72, 655423, 72, 655424, 72, 655425, 72, 655426, 72, 655427, 72, 655428, 72, 655429, 72, 655430, 72, 655431, 72, 655432, 72, 655433, 72, 655434, 72, 655435, 72, 655436, 72, 655437, 72, 655438, 72, 655439, 72, 655440, 72, 655441, 72, 655442, 72, 655443, 72, 655444, 72, 655445, 72, 655446, 72, 655447, 72, 655448, 72, 655449, 72, 655450, 72, 655451, 72, 655452, 72, 655453, 101, 655454, 99, 655455, 99, 655456, 99, 655457, 99, 655458, 99, 655459, 99, 655460, 99, 655461, 72, 655462, 72, 655463, 72, 655464, 72, 655465, 72, 655466, 72, 655467, 72, 655468, 72, 655469, 72, 655470, 72, 655471, 72, 655472, 72, 655473, 72, 655474, 72, 655475, 72, 655476, 72, 655477, 72, 655478, 72, 655479, 72, 655480, 72, 655481, 72, 655482, 72, 655483, 72, 655484, 72, 655485, 72, 655486, 72, 655487, 72, 655488, 72, 655489, 72, 655490, 72, 655491, 72, 655492, 72, 655493, 72, 655494, 72, 655495, 72, 655496, 72, 655497, 72, 655498, 72, 655499, 72, 655500, 72, 655501, 72, 655502, 72, 655503, 72, 655504, 72, 655505, 72, 655506, 72, 655507, 72, 655508, 72, 655509, 72, 655510, 72, 655511, 72, 786430, 4, 786431, 4, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4, 720916, 4, 720917, 4, 720918, 4, 720919, 4, 720920, 4, 720921, 4, 720922, 4, 720923, 4, 720924, 4, 720925, 4, 720926, 4, 720927, 4, 720928, 4, 720929, 4, 720930, 4, 720931, 4, 720932, 4, 720933, 4, 720934, 4, 720935, 4, 720936, 4, 720937, 4, 720938, 4, 720939, 4, 720940, 4, 720941, 4, 720942, 4, 720943, 4, 720944, 4, 720945, 4, 720946, 4, 720947, 4, 720948, 4, 720949, 4, 720950, 4, 720951, 4, 720952, 4, 720953, 4, 720954, 4, 720955, 4, 720956, 4, 720957, 4, 720958, 4, 720959, 4, 720960, 4, 720961, 4, 720962, 4, 720963, 4, 720964, 4, 720965, 4, 720966, 4, 720967, 4, 720968, 4, 720969, 4, 720970, 4, 720971, 4, 720972, 4, 720973, 4, 720974, 4, 720975, 4, 720976, 4, 720977, 4, 720978, 4, 720979, 4, 720980, 4, 720981, 4, 720982, 4, 720983, 4, 720984, 4, 720985, 4, 720986, 4, 720987, 4, 720988, 4, 720989, 4, 720990, 4, 720991, 4, 720992, 4, 720993, 4, 720994, 4, 720995, 4, 720996, 4, 720997, 4, 720998, 4, 720999, 4, 721000, 4, 721001, 4, 721002, 4, 721003, 4, 721004, 4, 721005, 4, 721006, 4, 721007, 4, 721008, 4, 721009, 4, 721010, 4, 721011, 4, 721012, 4, 721013, 4, 721014, 4, 721015, 4, 721016, 4, 721017, 4, 721018, 4, 721019, 4, 721020, 4, 721021, 4, 721022, 4, 721023, 4, 721024, 4, 721025, 4, 721026, 4, 721027, 4, 721028, 4, 721029, 4, 721030, 4, 721031, 4, 721032, 4, 721033, 4, 721034, 4, 721035, 4, 721036, 4, 721037, 4, 721038, 4, 721039, 4, 721040, 4, 721041, 4, 721042, 4, 721043, 4, 721044, 4, 721045, 4, 721046, 4, 721047, 4 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 10 )]
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 31.6847, 128.186 )
+
+[node name="HUD" parent="." instance=ExtResource( 11 )]
+
+editor/display_folded = true
+
+[node name="Particles2D" type="Particles2D" parent="HUD"]
+
+transform/pos = Vector2( 150.684, 0 )
+config/amount = 40
+config/lifetime = 5.0
+config/process_mode = 1
+config/half_extents = Vector2( 320, 0 )
+config/local_space = false
+config/texture = ExtResource( 12 )
+params/direction = 0.0
+params/spread = 0.0
+params/linear_velocity = 200.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="StreamPlayer" type="StreamPlayer" parent="HUD/Particles2D"]
+
+stream/stream = ExtResource( 13 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="skeleton_spawn1" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 152.314, 105.072 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 4
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton_spawn1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton_spawn1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton_spawn1"]
+
+transform/pos = Vector2( 181.388, 25.6862 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton_spawn1"]
+
+transform/pos = Vector2( 214.606, 33.65 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton_spawn1"]
+
+transform/pos = Vector2( 250.625, 29.2395 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton_spawn1"]
+
+transform/pos = Vector2( 280.765, 32.1798 )
+
+[node name="hounds_spawn1" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 151.552, 106.832 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = true
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hounds_spawn1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="hounds_spawn1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="hounds_spawn1"]
+
+transform/pos = Vector2( 190.19, 27.4467 )
+
+[node name="spawn_point2" type="Position2D" parent="hounds_spawn1"]
+
+transform/pos = Vector2( 233.971, 25.7277 )
+
+[node name="skeleton_spawn2" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 511.041, 106.147 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 3
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton_spawn2"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton_spawn2"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton_spawn2"]
+
+transform/pos = Vector2( 62.5884, 31.4868 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton_spawn2"]
+
+transform/pos = Vector2( -252.238, 30.5326 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton_spawn2"]
+
+transform/pos = Vector2( 93.1141, 21.3455 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton_spawn2"]
+
+transform/pos = Vector2( -230.552, 10.2303 )
+
+[node name="archers_spawn2" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 511.041, 106.147 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = true
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="archers_spawn2"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="archers_spawn2"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="archers_spawn2"]
+
+transform/pos = Vector2( 29.9044, 24.7278 )
+
+[node name="spawn_point2" type="Position2D" parent="archers_spawn2"]
+
+transform/pos = Vector2( -137.877, 16.9332 )
+
+[node name="skeleton1_spawn3" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 724.848, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 5
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton1_spawn3"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton1_spawn3"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton1_spawn3"]
+
+transform/pos = Vector2( 62.5405, 31.0442 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton1_spawn3"]
+
+transform/pos = Vector2( 99.842, 30.008 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton1_spawn3"]
+
+transform/pos = Vector2( -264.929, 17.5663 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton1_spawn3"]
+
+transform/pos = Vector2( -287.715, 11.8446 )
+
+[node name="spawn_point5" type="Position2D" parent="skeleton1_spawn3"]
+
+transform/pos = Vector2( -336.974, 14.3511 )
+
+[node name="skeleton2_spawn3" type="Area2D" parent="."]
+
+transform/pos = Vector2( 727.789, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -2.64075, 0.440125 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 5
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( -2.64075, 0.440125 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton2_spawn3"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( 149.481, 28.286 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( 183.544, 27.4121 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( 215.353, 28.6154 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( -198.973, 27.7048 )
+
+[node name="spawn_point5" type="Position2D" parent="skeleton2_spawn3"]
+
+transform/pos = Vector2( 121.426, 31.0968 )
+
+[node name="skeleton_spawn4" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 972.673, 105.072 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 5
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton_spawn4"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton_spawn4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton_spawn4"]
+
+transform/pos = Vector2( 129.153, 34.4499 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton_spawn4"]
+
+transform/pos = Vector2( -224.66, 30.504 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton_spawn4"]
+
+transform/pos = Vector2( -264.929, 29.4497 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton_spawn4"]
+
+transform/pos = Vector2( -293.437, 29.4497 )
+
+[node name="spawn_point5" type="Position2D" parent="skeleton_spawn4"]
+
+transform/pos = Vector2( -317.058, 32.7078 )
+
+[node name="archers_spawn4" type="Area2D" parent="."]
+
+transform/pos = Vector2( 972.673, 105.072 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = true
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="archers_spawn4"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="archers_spawn4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="archers_spawn4"]
+
+transform/pos = Vector2( 51.327, 38.928 )
+
+[node name="spawn_point2" type="Position2D" parent="archers_spawn4"]
+
+transform/pos = Vector2( -156.673, 38.928 )
+
+[node name="spawn_point3" type="Position2D" parent="archers_spawn4"]
+
+transform/pos = Vector2( -215.819, 33.1329 )
+
+[node name="spawn_point4" type="Position2D" parent="archers_spawn4"]
+
+transform/pos = Vector2( -293.437, 29.4497 )
+
+[node name="spawn_point5" type="Position2D" parent="archers_spawn4"]
+
+transform/pos = Vector2( -317.058, 32.7078 )
+
+[node name="hounds_spawn4" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 972.673, 105.072 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = true
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hounds_spawn4"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="hounds_spawn4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="hounds_spawn4"]
+
+transform/pos = Vector2( -182.246, 37.1271 )
+
+[node name="spawn_point2" type="Position2D" parent="hounds_spawn4"]
+
+transform/pos = Vector2( 93.3428, 32.504 )
+
+[node name="spawn_point3" type="Position2D" parent="hounds_spawn4"]
+
+transform/pos = Vector2( 158.343, 33.8819 )
+
+[node name="spawn_point4" type="Position2D" parent="hounds_spawn4"]
+
+transform/pos = Vector2( -293.437, 29.4497 )
+
+[node name="spawn_point5" type="Position2D" parent="hounds_spawn4"]
+
+transform/pos = Vector2( -317.058, 32.7078 )
+
+[node name="skeleton_spawn5" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 1280, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 5
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton_spawn5"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton_spawn5"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton_spawn5"]
+
+transform/pos = Vector2( 171.487, 26.8208 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton_spawn5"]
+
+transform/pos = Vector2( 135.812, 19.5157 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton_spawn5"]
+
+transform/pos = Vector2( -269.687, 24.4497 )
+
+[node name="spawn_point4" type="Position2D" parent="skeleton_spawn5"]
+
+transform/pos = Vector2( -291.276, 27.8286 )
+
+[node name="spawn_point5" type="Position2D" parent="skeleton_spawn5"]
+
+transform/pos = Vector2( -308.418, 23.8667 )
+
+[node name="red_skel_spawn5" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 1280, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = true
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_skel_spawn5"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="red_skel_spawn5"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="red_skel_spawn5"]
+
+transform/pos = Vector2( 85.8322, 23.189 )
+
+[node name="spawn_point2" type="Position2D" parent="red_skel_spawn5"]
+
+transform/pos = Vector2( -251.972, 18.3834 )
+
+[node name="spawn_point3" type="Position2D" parent="red_skel_spawn5"]
+
+visibility/visible = false
+transform/pos = Vector2( -264.929, 29.4497 )
+
+[node name="spawn_point4" type="Position2D" parent="red_skel_spawn5"]
+
+visibility/visible = false
+transform/pos = Vector2( -293.437, 29.4497 )
+
+[node name="spawn_point5" type="Position2D" parent="red_skel_spawn5"]
+
+visibility/visible = false
+transform/pos = Vector2( -319.765, 25.4877 )
+
+[node name="hounds_spawn6" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 1584, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = true
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 3
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hounds_spawn6"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="hounds_spawn6"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="hounds_spawn6"]
+
+transform/pos = Vector2( 166.945, 23.9579 )
+
+[node name="spawn_point2" type="Position2D" parent="hounds_spawn6"]
+
+transform/pos = Vector2( 222.272, 22.8385 )
+
+[node name="spawn_point3" type="Position2D" parent="hounds_spawn6"]
+
+transform/pos = Vector2( -279.622, 21.6349 )
+
+[node name="skeleton_spawn7" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 2081.07, 109.839 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 64.7461, -1.19164 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = true
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 3
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="skeleton_spawn7"]
+
+transform/pos = Vector2( 64.7461, -1.19164 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="skeleton_spawn7"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="skeleton_spawn7"]
+
+transform/pos = Vector2( 135.251, 7.45417 )
+
+[node name="spawn_point2" type="Position2D" parent="skeleton_spawn7"]
+
+transform/pos = Vector2( 138.528, 27.0507 )
+
+[node name="spawn_point3" type="Position2D" parent="skeleton_spawn7"]
+
+transform/pos = Vector2( -171.471, 12.7414 )
+
+[node name="door" parent="skeleton_spawn7" instance=ExtResource( 15 )]
+
+transform/pos = Vector2( 38.9321, -13.8385 )
+map_index = 9
+
+[node name="red_skel_spawn7" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 2081.07, 109.839 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 65.1433, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = true
+amount = 3
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_skel_spawn7"]
+
+transform/pos = Vector2( 65.1433, 0 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="red_skel_spawn7"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="red_skel_spawn7"]
+
+transform/pos = Vector2( 163.919, 25.397 )
+
+[node name="spawn_point2" type="Position2D" parent="red_skel_spawn7"]
+
+transform/pos = Vector2( 40.4355, 16.6643 )
+
+[node name="spawn_point3" type="Position2D" parent="red_skel_spawn7"]
+
+transform/pos = Vector2( -183.387, 23.7002 )
+
+[node name="door" parent="red_skel_spawn7" instance=ExtResource( 15 )]
+
+transform/pos = Vector2( 38.9321, -13.8385 )
+map_index = 9
+
+[node name="archers_spawn7" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 2081.07, 109.839 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 65.1433, 3.17772 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 14 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = true
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="archers_spawn7"]
+
+transform/pos = Vector2( 65.1433, 3.17772 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="archers_spawn7"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="archers_spawn7"]
+
+transform/pos = Vector2( 108.888, 22.0887 )
+
+[node name="spawn_point2" type="Position2D" parent="archers_spawn7"]
+
+transform/pos = Vector2( -248.193, 23.2041 )
+
+[node name="spawn_point3" type="Position2D" parent="archers_spawn7"]
+
+transform/pos = Vector2( -219.534, 27.8355 )
+
+[node name="door" parent="archers_spawn7" instance=ExtResource( 15 )]
+
+transform/pos = Vector2( 38.9321, -13.8385 )
+map_index = 9
+
+[node name="vending_machine1" parent="." instance=ExtResource( 16 )]
+
+transform/pos = Vector2( 1511.15, 96 )
+
+[node name="chicken" parent="." instance=ExtResource( 17 )]
+
+transform/pos = Vector2( 1059.18, 138.596 )
+score_value = 3
+
+[node name="pizza_slice" parent="." instance=ExtResource( 18 )]
+
+transform/pos = Vector2( 2254.24, 144.816 )
+score_value = 3
+
+[node name="energy_bottle" parent="." instance=ExtResource( 19 )]
+
+transform/pos = Vector2( 1258.54, 111.162 )
+score_value = 3
+
+[node name="broken_wall_graveyard" parent="." instance=ExtResource( 20 )]
+
+transform/pos = Vector2( 592, 96 )
+drop_coin = true
+
+[node name="broken_wall_graveyard1" parent="." instance=ExtResource( 20 )]
+
+transform/pos = Vector2( 2032, 96 )
+drop_coin = true
+
+[node name="energy_bottle 2" parent="." instance=ExtResource( 19 )]
+
+transform/pos = Vector2( 554.997, 115.999 )
+score_value = 3
+
+[node name="energy_bottle3" parent="." instance=ExtResource( 19 )]
+
+transform/pos = Vector2( 925.171, 131.52 )
+score_value = 3
+
+[node name="ParallaxBackground 2" type="ParallaxBackground" parent="."]
+
+editor/display_folded = true
+layer = 0
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground 2"]
+
+transform/pos = Vector2( -13.5052, -8.0493 )
+motion/scale = Vector2( 0.9, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground 2/ParallaxLayer"]
+
+transform/pos = Vector2( 248.188, 105.593 )
+texture = ExtResource( 21 )
+
+[node name="green_skull" parent="." instance=ExtResource( 22 )]
+
+transform/pos = Vector2( 636.746, 142.782 )
+
+[node name="green_skull 2" parent="." instance=ExtResource( 22 )]
+
+transform/pos = Vector2( 1160.43, 142.56 )
+
+[node name="spikes" parent="." instance=ExtResource( 23 )]
+
+transform/pos = Vector2( 1262.13, 131.395 )
+
+[node name="spikes1" parent="." instance=ExtResource( 23 )]
+
+transform/pos = Vector2( 2080.22, 123.712 )
+
+[node name="green_skull 3" parent="." instance=ExtResource( 22 )]
+
+transform/pos = Vector2( 180.821, 140.91 )
+
+[node name="vending_machine" parent="." instance=ExtResource( 16 )]
+
+transform/pos = Vector2( 1960.6, 98.4246 )
+
+

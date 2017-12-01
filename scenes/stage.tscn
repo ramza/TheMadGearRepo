@@ -1,0 +1,309 @@
+[gd_scene load_steps=19 format=1]
+
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/scenery/moon_sky.png" type="Texture" id=2]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=3]
+[ext_resource path="res://scenes/fan.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/props/speaker.png" type="Texture" id=6]
+[ext_resource path="res://images/props/drum_kit.png" type="Texture" id=7]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=8]
+[ext_resource path="res://scenes/prison_door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/arena_spawn.gd" type="Script" id=10]
+[ext_resource path="res://scenes/spot_light.tscn" type="PackedScene" id=11]
+[ext_resource path="res://images/props/crowd.png" type="Texture" id=12]
+[ext_resource path="res://images/cutscenes/text_boxes/marry_me.png" type="Texture" id=13]
+[ext_resource path="res://images/cutscenes/text_boxes/rock_out.png" type="Texture" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 128 )
+
+[sub_resource type="Animation" id=3]
+
+length = 0.7
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "play"
+length = 10.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 3, 9 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[node name="stage" type="Node2D" groups=[
+"city",
+]]
+
+z/z = 3
+
+[node name="HUD" parent="." instance=ExtResource( 1 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+z/z = -2
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 54, 0, 54, 1, 4, 2, 4, 3, 4, 4, 5, 5, 5, 6, 5, 7, 5, 8, 5, 9, 5, 10, 5, 11, 5, 12, 5, 13, 5, 14, 5, 15, 4, 16, 4, 17, 4, 18, 54, 19, 54, 20, 54, 21, 54, 22, 54, 23, 54, 24, 54, 131071, 54, 65536, 54, 65537, 4, 65538, 4, 65539, 4, 65540, 32, 65541, 32, 65542, 32, 65543, 32, 65544, 32, 65545, 32, 65546, 32, 65547, 32, 65548, 32, 65549, 32, 65550, 32, 65551, 4, 65552, 4, 65553, 4, 65554, 54, 65555, 54, 65556, 54, 65557, 54, 65558, 54, 65559, 54, 65560, 54, 196607, 54, 131072, 54, 131073, 4, 131074, 4, 131075, 4, 131076, 0, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 131082, 0, 131083, 0, 131084, 0, 131085, 104, 131086, 0, 131087, 4, 131088, 4, 131089, 4, 131090, 54, 131091, 54, 131092, 54, 131093, 54, 131094, 54, 131095, 54, 131096, 54, 262143, 54, 196608, 54, 196609, 4, 196610, 4, 196611, 4, 196612, 0, 196613, 4, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196619, 0, 196620, 0, 196621, 4, 196622, 0, 196623, 4, 196624, 4, 196625, 4, 196626, 54, 196627, 54, 196628, 54, 196629, 54, 196630, 54, 196631, 54, 196632, 54, 327679, 54, 262144, 54, 262145, 4, 262146, 4, 262147, 4, 262148, 5, 262149, 4, 262150, 5, 262151, 5, 262152, 5, 262153, 5, 262154, 5, 262155, 5, 262156, 5, 262157, 4, 262158, 5, 262159, 4, 262160, 4, 262161, 4, 262162, 54, 262163, 54, 262164, 54, 262165, 54, 262166, 54, 262167, 54, 262168, 54, 393215, 54, 327680, 54, 327681, 4, 327682, 4, 327683, 23, 327684, 10, 327685, 10, 327686, 10, 327687, 10, 327688, 10, 327689, 10, 327690, 10, 327691, 10, 327692, 11, 327693, 10, 327694, 10, 327695, 24, 327696, 4, 327697, 4, 327698, 54, 327699, 54, 327700, 54, 327701, 54, 327702, 54, 327703, 54, 327704, 54, 458751, 54, 393216, 54, 393217, 4, 393218, 21, 393219, 13, 393220, 13, 393221, 12, 393222, 12, 393223, 12, 393224, 12, 393225, 12, 393226, 12, 393227, 13, 393228, 13, 393229, 13, 393230, 13, 393231, 13, 393232, 22, 393233, 4, 393234, 54, 393235, 54, 393236, 54, 393237, 54, 393238, 54, 393239, 54, 393240, 54, 524287, 54, 458752, 54, 458753, 21, 458754, 13, 458755, 13, 458756, 12, 458757, 13, 458758, 14, 458759, 12, 458760, 12, 458761, 12, 458762, 12, 458763, 13, 458764, 12, 458765, 13, 458766, 13, 458767, 13, 458768, 12, 458769, 22, 458770, 54, 458771, 54, 458772, 54, 458773, 54, 458774, 54, 458775, 54, 458776, 54, 589823, 54, 524288, 54, 524289, 140, 524290, 140, 524291, 140, 524292, 140, 524293, 140, 524294, 140, 524295, 140, 524296, 140, 524297, 140, 524298, 140, 524299, 140, 524300, 140, 524301, 140, 524302, 140, 524303, 140, 524304, 140, 524305, 140, 524306, 54, 524307, 54, 524308, 54, 524309, 54, 524310, 54, 524311, 54, 524312, 54, 655359, 54, 589824, 54, 589825, 139, 589826, 139, 589827, 139, 589828, 139, 589829, 139, 589830, 139, 589831, 139, 589832, 139, 589833, 139, 589834, 139, 589835, 139, 589836, 139, 589837, 139, 589838, 139, 589839, 139, 589840, 139, 589841, 139, 589842, 54, 589843, 54, 589844, 54, 589845, 54, 589846, 54, 589847, 54, 589848, 54, 720895, 54, 655360, 54, 655361, 139, 655362, 139, 655363, 139, 655364, 139, 655365, 139, 655366, 139, 655367, 139, 655368, 139, 655369, 139, 655370, 139, 655371, 139, 655372, 139, 655373, 139, 655374, 139, 655375, 139, 655376, 139, 655377, 139, 655378, 54, 655379, 54, 655380, 54, 655381, 54, 655382, 54, 655383, 54, 655384, 54, 786431, 54, 720896, 54, 720897, 139, 720898, 139, 720899, 139, 720900, 139, 720901, 139, 720902, 139, 720903, 139, 720904, 139, 720905, 139, 720906, 139, 720907, 139, 720908, 139, 720909, 139, 720910, 139, 720911, 139, 720912, 139, 720913, 139, 720914, 54, 720915, 54, 720916, 54, 720917, 54, 720918, 54, 720919, 54, 720920, 54 )
+
+[node name="fans" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( -8, 0 )
+
+[node name="fan7" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 120, 24 )
+
+[node name="fan8" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 200, 24 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 5 )]
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 76.3702, 91.4882 )
+
+[node name="speaker" type="Sprite" parent="."]
+
+transform/pos = Vector2( 114.556, 70.7871 )
+texture = ExtResource( 6 )
+
+[node name="drumset" type="Sprite" parent="."]
+
+transform/pos = Vector2( 167.386, 69.1982 )
+texture = ExtResource( 7 )
+
+[node name="enemy_spawn" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 215.603, 90.24 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -39.4462, -1.62108 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 8 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = true
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( -39.4462, -1.62108 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( -127.076, -8.61355 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( -0.611633, -7.43915 )
+
+[node name="door" parent="enemy_spawn" instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 0.396606, -26.24 )
+map_index = 7
+
+[node name="arena_spawn" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 168, 96 )
+script/script = ExtResource( 10 )
+type = 1
+has_door = true
+
+[node name="spawnpoint_1" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -80, -16 )
+
+[node name="spawnpoint_2" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( 48, -16 )
+
+[node name="Timer" type="Timer" parent="arena_spawn"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="Area2D" type="Area2D" parent="arena_spawn"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena_spawn/Area2D"]
+
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
+
+[node name="spot_light" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 104, 16 )
+transform/rot = 148.815
+
+[node name="spot_light1" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 184, 16 )
+transform/rot = 191.122
+
+[node name="crowd" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 158.585, 92.5388 )
+texture = ExtResource( 12 )
+vframes = 2
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="crowd"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/crowd_move = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "crowd_move"
+
+[node name="text_bubble" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 219.926, 136.171 )
+texture = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="text_bubble"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/play = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "play"
+
+[node name="text_bubble1" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 65.3495, 140.151 )
+texture = ExtResource( 14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="text_bubble1"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/play = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "play"
+
+

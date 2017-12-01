@@ -1,0 +1,407 @@
+[gd_scene load_steps=41 format=1]
+
+[ext_resource path="res://scripts/miles.gd" type="Script" id=1]
+[ext_resource path="res://images/effects/aura.png" type="Texture" id=2]
+[ext_resource path="res://scenes/music_particles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://images/heroes/miles.png" type="Texture" id=4]
+[ext_resource path="res://scenes/electric_particles.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/props/red_circle.png" type="Texture" id=6]
+[ext_resource path="res://audio/effects/Miles/miles_death.wav" type="Sample" id=7]
+[ext_resource path="res://audio/effects/Miles/miles_grunt.wav" type="Sample" id=8]
+[ext_resource path="res://audio/effects/Miles/miles_hurt.wav" type="Sample" id=9]
+[ext_resource path="res://audio/jump.wav" type="Sample" id=10]
+[ext_resource path="res://audio/effects/Miles/trumpet_1.wav" type="Sample" id=11]
+[ext_resource path="res://audio/effects/Miles/trumpet_2.wav" type="Sample" id=12]
+[ext_resource path="res://audio/effects/Miles/trumpet_3.wav" type="Sample" id=13]
+[ext_resource path="res://audio/effects/Miles/trumpet_4.wav" type="Sample" id=14]
+[ext_resource path="res://audio/spell.wav" type="Sample" id=15]
+[ext_resource path="res://audio/effects/super_saiyan_4.wav" type="Sample" id=16]
+[ext_resource path="res://audio/misc_fight_sounds/Air Swing 1.wav" type="Sample" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4.4352, 12.549 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 3.66802
+
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.687866, 0, 0.765625, 1, 1, 0.636719, 0.900665, 1 )
+
+[sub_resource type="Animation" id=4]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 25, 26, 27 ] }
+
+[sub_resource type="Animation" id=5]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 28, 21 ] }
+
+[sub_resource type="Animation" id=6]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.4 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 21, 24 ] }
+
+[sub_resource type="Animation" id=7]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 22, 21, 23, 21 ] }
+
+[sub_resource type="Animation" id=8]
+
+length = 7.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 9, 10, 11 ] }
+
+[sub_resource type="Animation" id=9]
+
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2, 0.4, 1.5 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 9, 10, 11, 12 ] }
+
+[sub_resource type="Animation" id=10]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 9, 7 ] }
+
+[sub_resource type="Animation" id=11]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 0, 7 ] }
+
+[sub_resource type="Animation" id=12]
+
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 8 ] }
+
+[sub_resource type="Animation" id=13]
+
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 16 ] }
+
+[sub_resource type="Animation" id=14]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.3 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 5, 6, 0 ] }
+
+[sub_resource type="Animation" id=15]
+
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+
+[sub_resource type="Animation" id=16]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 4, 0 ] }
+
+[sub_resource type="Animation" id=17]
+
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 13, 14, 15 ] }
+
+[sub_resource type="Animation" id=18]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2, 0.4, 0.6 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 5, 19, 20, 0 ] }
+
+[sub_resource type="Animation" id=19]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.3, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 31, 32, 33, 32 ] }
+
+[sub_resource type="Animation" id=20]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.4 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 29, 30 ] }
+
+[sub_resource type="Animation" id=21]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 17, 18 ] }
+
+[sub_resource type="Animation" id=22]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 1, 0, 2, 0 ] }
+
+[sub_resource type="SampleLibrary" id=23]
+
+samples/death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/hurt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/hurt2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+samples/jump = { "db":0.0, "pitch":1.0, "sample":ExtResource( 10 ) }
+samples/rock_out = { "db":10.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/rock_out_2 = { "db":10.0, "pitch":1.0, "sample":ExtResource( 12 ) }
+samples/rock_out_3 = { "db":10.0, "pitch":1.0, "sample":ExtResource( 13 ) }
+samples/rock_out_4 = { "db":10.0, "pitch":1.0, "sample":ExtResource( 14 ) }
+samples/special = { "db":0.0, "pitch":1.0, "sample":ExtResource( 15 ) }
+samples/super_saiyan = { "db":-10.0, "pitch":1.0, "sample":ExtResource( 16 ) }
+samples/swing = { "db":0.0, "pitch":1.0, "sample":ExtResource( 17 ) }
+
+[node name="miles" type="KinematicBody2D" groups=[ "heroes" ]]
+
+z/z = 1
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0.387424, -4.26166 )
+shapes/0/trigger = true
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0.257027, 15.486 )
+shapes/1/trigger = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+player_1 = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 32
+config/lifetime = 0.5
+config/texture = ExtResource( 2 )
+params/direction = 180.0
+params/spread = 70.0
+params/linear_velocity = 80.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.1
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color_ramp = SubResource( 3 )
+
+[node name="music_particles" parent="." instance=ExtResource( 3 )]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 4 )
+vframes = 6
+hframes = 6
+frame = 27
+
+[node name="electric_particles" parent="." instance=ExtResource( 5 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/bat_attack = SubResource( 4 )
+anims/bat_hurt = SubResource( 5 )
+anims/bat_idle = SubResource( 6 )
+anims/bat_walk = SubResource( 7 )
+anims/death = SubResource( 8 )
+anims/fall = SubResource( 9 )
+anims/hurt = SubResource( 10 )
+anims/idle = SubResource( 11 )
+anims/jump = SubResource( 12 )
+anims/jump_kick = SubResource( 13 )
+anims/kick1 = SubResource( 14 )
+anims/punch1 = SubResource( 15 )
+anims/punch2 = SubResource( 16 )
+anims/rock_out = SubResource( 17 )
+anims/roundhouse = SubResource( 18 )
+anims/special = SubResource( 19 )
+anims/tired = SubResource( 20 )
+anims/uppercut = SubResource( 21 )
+anims/walk = SubResource( 22 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="body_collider" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0.387424, -4.26166 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="feet_collider" type="CollisionShape2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 0.257027, 15.486 )
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 1
+
+[node name="Sprite" type="Sprite" parent="feet_collider"]
+
+visibility/visible = false
+transform/pos = Vector2( -0.106748, 0.494174 )
+transform/scale = Vector2( 0.792944, 0.792944 )
+texture = ExtResource( 6 )
+
+[node name="attack_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="combo_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.6
+one_shot = true
+autostart = false
+
+[node name="immunity_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="super_saiyan_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 10.0
+one_shot = false
+autostart = false
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 2
+config/samples = SubResource( 23 )
+config/pitch_random = 0.0
+
+[node name="punch_position" type="Position2D" parent="."]
+
+transform/pos = Vector2( 16.3598, -12.0198 )
+
+[node name="kick_position" type="Position2D" parent="."]
+
+transform/pos = Vector2( 19.4592, -0.590795 )
+
+

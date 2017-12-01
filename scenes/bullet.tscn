@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/knife.gd" type="Script" id=1]
+[ext_resource path="res://images/enemies/bullet.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22.1081, 19.9902 )
+
+[node name="bullet" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.372083, 0, 0, 0.311169, 0.340687, 0.658368 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( 0.340687, 0.658368 )
+transform/scale = Vector2( 0.372083, 0.311169 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+

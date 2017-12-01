@@ -1,0 +1,257 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://scripts/leaderboard.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/brick_wall.png" type="Texture" id=2]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://audio/start.wav" type="Sample" id=4]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "flash"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "select"
+length = 1.1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="SampleLibrary" id=3]
+
+samples/start = {
+"db": 10.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+
+[node name="leaderboard" type="Node2D" groups=[
+"cutscenes_alt",
+"cutscenes",
+]]
+
+script/script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="names_list" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 17.0
+margin/top = 19.0
+margin/right = 99.0
+margin/bottom = 166.0
+custom_fonts/font = ExtResource( 3 )
+text = " 1 Rex:	
+ 2 Shreddy:	
+ 3 Bruce:		
+ 4 Bigvig:	
+ 5 Miles:		
+ 6 Rex:
+ 7 Shreddy
+ 8 Bruce:	
+ 9 Bigvig:
+10 Miles:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="score_list" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 94.0
+margin/top = 19.0
+margin/right = 164.0
+margin/bottom = 166.0
+custom_fonts/font = ExtResource( 3 )
+text = "5000
+4000
+3000
+12
+12321
+125
+4564
+"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="enter_name_label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 188.0
+margin/top = 123.0
+margin/right = 295.0
+margin/bottom = 137.0
+custom_fonts/font = ExtResource( 3 )
+text = "P1 name?"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="enter_name" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 245.0
+margin/top = 117.0
+margin/right = 315.0
+margin/bottom = 139.0
+custom_fonts/font = ExtResource( 3 )
+text = "Player"
+placeholder/alpha = 0.6
+max_length = 7
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="player1_score" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 184.0
+margin/top = 19.0
+margin/right = 242.0
+margin/bottom = 33.0
+custom_fonts/font = ExtResource( 3 )
+text = "Player 1: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="player2_score" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 184.0
+margin/top = 36.0
+margin/right = 243.0
+margin/bottom = 50.0
+custom_fonts/font = ExtResource( 3 )
+text = "Player 2: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="press_start" type="Label" parent="."]
+
+visibility/opacity = 0.91782
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 140.0
+margin/top = 160.0
+margin/right = 203.0
+margin/bottom = 174.0
+custom_fonts/font = ExtResource( 3 )
+text = "press enter"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="press_start"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/flash = SubResource( 1 )
+anims/select = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "flash"
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="press_start"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 3 )
+config/pitch_random = 0.0
+
+[node name="submit_btn" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 247.0
+margin/top = 145.0
+margin/right = 259.0
+margin/bottom = 165.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Submit"
+flat = false
+
+[node name="top_scores" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 23.0
+margin/top = 5.0
+margin/right = 92.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+text = "Leaderboard"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

@@ -1,0 +1,372 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/scenery/moon_sky.png" type="Texture" id=2]
+[ext_resource path="res://images/scenery/dark_tree_line.png" type="Texture" id=3]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=4]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=6]
+[ext_resource path="res://scenes/prison_door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/arena_spawn.gd" type="Script" id=8]
+[ext_resource path="res://scenes/chicken.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 128 )
+
+[node name="courtroom_4" type="Node2D" groups=[
+"courtroom",
+]]
+
+z/z = 3
+
+[node name="HUD" parent="." instance=ExtResource( 1 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.2, 0.2 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
+
+transform/pos = Vector2( 160, 61.3313 )
+texture = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+z/z = -2
+mode = 0
+tile_set = ExtResource( 4 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 4, 0, 4, 1, 4, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 141, 13, 141, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 19, 0, 20, 4, 21, 4, 22, 4, 23, 139, 24, 139, 25, 139, 26, 139, 27, 139, 28, 139, 29, 139, 30, 139, 31, 139, 32, 139, 33, 139, 34, 139, 35, 139, 36, 139, 37, 139, 38, 139, 39, 4, 40, 4, 41, 4, 42, 139, 43, 139, 44, 139, 45, 139, 46, 139, 47, 139, 48, 141, 49, 141, 50, 141, 51, 141, 52, 139, 53, 139, 54, 139, 55, 139, 56, 139, 57, 139, 58, 139, 59, 139, 60, 4, 61, 4, 62, 4, 63, 139, 64, 139, 65, 139, 66, 139, 67, 139, 68, 139, 69, 139, 70, 139, 71, 139, 131071, 4, 65536, 140, 65537, 140, 65538, 140, 65539, 140, 65540, 140, 65541, 140, 65542, 140, 65543, 140, 65544, 140, 65545, 140, 65546, 140, 65547, 140, 65548, 141, 65549, 141, 65550, 140, 65551, 140, 65552, 140, 65553, 140, 65554, 140, 65555, 140, 65556, 4, 65557, 4, 65558, 4, 65559, 139, 65560, 139, 65561, 153, 65562, 154, 65563, 153, 65564, 154, 65565, 153, 65566, 154, 65567, 153, 65568, 154, 65569, 153, 65570, 154, 65571, 153, 65572, 154, 65573, 139, 65574, 139, 65575, 4, 65576, 4, 65577, 4, 65578, 139, 65579, 139, 65580, 139, 65581, 139, 65582, 139, 65583, 139, 65584, 141, 65585, 141, 65586, 141, 65587, 141, 65588, 139, 65589, 139, 65590, 139, 65591, 139, 65592, 139, 65593, 139, 65594, 139, 65595, 139, 65596, 4, 65597, 4, 65598, 4, 65599, 139, 65600, 139, 65601, 139, 65602, 139, 65603, 139, 65604, 139, 65605, 139, 65606, 139, 65607, 139, 196607, 4, 131072, 139, 131073, 139, 131074, 139, 131075, 139, 131076, 139, 131077, 139, 131078, 139, 131079, 139, 131080, 139, 131081, 139, 131082, 139, 131083, 139, 131084, 141, 131085, 141, 131086, 139, 131087, 139, 131088, 139, 131089, 139, 131090, 139, 131091, 139, 131092, 4, 131093, 4, 131094, 4, 131095, 139, 131096, 139, 131097, 155, 131098, 156, 131099, 155, 131100, 156, 131101, 155, 131102, 156, 131103, 155, 131104, 156, 131105, 155, 131106, 156, 131107, 155, 131108, 156, 131109, 139, 131110, 139, 131111, 4, 131112, 4, 131113, 4, 131114, 139, 131115, 139, 131116, 139, 131117, 139, 131118, 139, 131119, 139, 131120, 141, 131121, 141, 131122, 141, 131123, 141, 131124, 139, 131125, 139, 131126, 139, 131127, 139, 131128, 139, 131129, 139, 131130, 139, 131131, 139, 131132, 4, 131133, 4, 131134, 4, 131135, 139, 131136, 139, 131137, 139, 131138, 139, 131139, 139, 131140, 139, 131141, 139, 131142, 139, 131143, 139, 262143, 4, 196608, 139, 196609, 139, 196610, 139, 196611, 139, 196612, 139, 196613, 139, 196614, 139, 196615, 139, 196616, 139, 196617, 139, 196618, 139, 196619, 139, 196620, 141, 196621, 141, 196622, 139, 196623, 139, 196624, 139, 196625, 139, 196626, 139, 196627, 139, 196628, 4, 196629, 4, 196630, 4, 196631, 139, 196632, 4, 196633, 157, 196634, 158, 196635, 157, 196636, 158, 196637, 157, 196638, 158, 196639, 157, 196640, 158, 196641, 157, 196642, 158, 196643, 157, 196644, 158, 196645, 4, 196646, 139, 196647, 4, 196648, 4, 196649, 4, 196650, 139, 196651, 139, 196652, 139, 196653, 139, 196654, 139, 196655, 139, 196656, 141, 196657, 141, 196658, 141, 196659, 141, 196660, 139, 196661, 139, 196662, 139, 196663, 139, 196664, 139, 196665, 139, 196666, 139, 196667, 139, 196668, 4, 196669, 4, 196670, 4, 196671, 139, 196672, 139, 196673, 139, 196674, 139, 196675, 139, 196676, 139, 196677, 139, 196678, 139, 196679, 139, 327679, 4, 262144, 139, 262145, 139, 262146, 139, 262147, 139, 262148, 139, 262149, 139, 262150, 139, 262151, 139, 262152, 139, 262153, 139, 262154, 139, 262155, 139, 262156, 141, 262157, 141, 262158, 139, 262159, 139, 262160, 139, 262161, 139, 262162, 139, 262163, 139, 262164, 4, 262165, 4, 262166, 4, 262167, 151, 262168, 4, 262169, 151, 262170, 151, 262171, 151, 262172, 151, 262173, 151, 262174, 151, 262175, 151, 262176, 151, 262177, 151, 262178, 151, 262179, 151, 262180, 151, 262181, 4, 262182, 151, 262183, 4, 262184, 4, 262185, 4, 262186, 139, 262187, 139, 262188, 139, 262189, 139, 262190, 139, 262191, 139, 262192, 141, 262193, 141, 262194, 141, 262195, 141, 262196, 139, 262197, 139, 262198, 139, 262199, 139, 262200, 139, 262201, 139, 262202, 139, 262203, 139, 262204, 4, 262205, 4, 262206, 4, 262207, 139, 262208, 139, 262209, 139, 262210, 139, 262211, 139, 262212, 139, 262213, 139, 262214, 139, 262215, 139, 393215, 4, 327680, 139, 327681, 139, 327682, 139, 327683, 139, 327684, 139, 327685, 139, 327686, 139, 327687, 139, 327688, 139, 327689, 139, 327690, 139, 327691, 139, 327692, 141, 327693, 141, 327694, 139, 327695, 139, 327696, 139, 327697, 139, 327698, 139, 327699, 139, 327700, 4, 327701, 4, 327702, 23, 327703, 11, 327704, 11, 327705, 11, 327706, 11, 327707, 11, 327708, 11, 327709, 11, 327710, 11, 327711, 11, 327712, 11, 327713, 11, 327714, 11, 327715, 11, 327716, 11, 327717, 11, 327718, 11, 327719, 24, 327720, 4, 327721, 4, 327722, 139, 327723, 139, 327724, 139, 327725, 139, 327726, 139, 327727, 139, 327728, 141, 327729, 141, 327730, 141, 327731, 141, 327732, 139, 327733, 183, 327734, 139, 327735, 139, 327736, 139, 327737, 139, 327738, 139, 327739, 139, 327740, 4, 327741, 4, 327742, 4, 327743, 139, 327744, 139, 327745, 139, 327746, 139, 327747, 139, 327748, 139, 327749, 139, 327750, 139, 327751, 139, 458751, 4, 393216, 139, 393217, 139, 393218, 139, 393219, 4, 393220, 139, 393221, 139, 393222, 139, 393223, 139, 393224, 139, 393225, 139, 393226, 139, 393227, 139, 393228, 141, 393229, 141, 393230, 139, 393231, 139, 393232, 139, 393233, 139, 393234, 139, 393235, 139, 393236, 4, 393237, 21, 393238, 13, 393239, 13, 393240, 13, 393241, 13, 393242, 13, 393243, 13, 393244, 13, 393245, 13, 393246, 13, 393247, 13, 393248, 13, 393249, 13, 393250, 13, 393251, 13, 393252, 13, 393253, 13, 393254, 13, 393255, 13, 393256, 22, 393257, 4, 393258, 139, 393259, 139, 393260, 139, 393261, 139, 393262, 139, 393263, 139, 393264, 141, 393265, 141, 393266, 141, 393267, 141, 393268, 139, 393269, 4, 393270, 139, 393271, 139, 393272, 139, 393273, 139, 393274, 139, 393275, 139, 393276, 4, 393277, 4, 393278, 4, 393279, 139, 393280, 139, 393281, 139, 393282, 139, 393283, 139, 393284, 139, 393285, 139, 393286, 139, 393287, 139, 524287, 4, 458752, 151, 458753, 151, 458754, 151, 458755, 4, 458756, 151, 458757, 151, 458758, 151, 458759, 151, 458760, 151, 458761, 151, 458762, 151, 458763, 151, 458764, 151, 458765, 151, 458766, 151, 458767, 151, 458768, 151, 458769, 151, 458770, 151, 458771, 151, 458772, 21, 458773, 12, 458774, 12, 458775, 12, 458776, 12, 458777, 12, 458778, 12, 458779, 12, 458780, 12, 458781, 12, 458782, 12, 458783, 12, 458784, 12, 458785, 12, 458786, 12, 458787, 12, 458788, 12, 458789, 12, 458790, 12, 458791, 12, 458792, 13, 458793, 22, 458794, 151, 458795, 151, 458796, 151, 458797, 151, 458798, 151, 458799, 151, 458800, 151, 458801, 151, 458802, 151, 458803, 151, 458804, 151, 458805, 4, 458806, 151, 458807, 151, 458808, 151, 458809, 151, 458810, 151, 458811, 151, 458812, 4, 458813, 4, 458814, 4, 458815, 139, 458816, 139, 458817, 139, 458818, 139, 458819, 139, 458820, 139, 458821, 139, 458822, 139, 458823, 139, 589823, 4, 524288, 11, 524289, 11, 524290, 10, 524291, 10, 524292, 10, 524293, 10, 524294, 10, 524295, 10, 524296, 10, 524297, 10, 524298, 10, 524299, 10, 524300, 10, 524301, 10, 524302, 10, 524303, 10, 524304, 10, 524305, 10, 524306, 10, 524307, 10, 524308, 10, 524309, 10, 524310, 11, 524311, 10, 524312, 10, 524313, 11, 524314, 11, 524315, 11, 524316, 11, 524317, 11, 524318, 11, 524319, 11, 524320, 11, 524321, 11, 524322, 11, 524323, 11, 524324, 11, 524325, 11, 524326, 11, 524327, 11, 524328, 10, 524329, 11, 524330, 11, 524331, 10, 524332, 11, 524333, 11, 524334, 11, 524335, 11, 524336, 11, 524337, 11, 524338, 11, 524339, 11, 524340, 11, 524341, 11, 524342, 11, 524343, 11, 524344, 11, 524345, 11, 524346, 10, 524347, 10, 524348, 24, 524349, 4, 524350, 4, 524351, 139, 524352, 139, 524353, 139, 524354, 139, 524355, 139, 524356, 139, 524357, 139, 524358, 139, 524359, 139, 655359, 4, 589824, 137, 589825, 192, 589826, 137, 589827, 137, 589828, 137, 589829, 137, 589830, 137, 589831, 137, 589832, 137, 589833, 137, 589834, 137, 589835, 137, 589836, 137, 589837, 137, 589838, 137, 589839, 137, 589840, 137, 589841, 137, 589842, 137, 589843, 137, 589844, 137, 589845, 137, 589846, 137, 589847, 137, 589848, 137, 589849, 137, 589850, 137, 589851, 137, 589852, 137, 589853, 137, 589854, 137, 589855, 137, 589856, 137, 589857, 137, 589858, 137, 589859, 137, 589860, 137, 589861, 137, 589862, 137, 589863, 137, 589864, 137, 589865, 137, 589866, 137, 589867, 137, 589868, 137, 589869, 137, 589870, 137, 589871, 137, 589872, 137, 589873, 137, 589874, 137, 589875, 137, 589876, 137, 589877, 137, 589878, 137, 589879, 137, 589880, 137, 589881, 137, 589882, 137, 589883, 137, 589884, 137, 589885, 161, 589886, 4, 589887, 139, 589888, 139, 589889, 139, 589890, 139, 589891, 139, 589892, 139, 589893, 139, 589894, 139, 589895, 139, 720895, 4, 655360, 137, 655361, 192, 655362, 137, 655363, 137, 655364, 137, 655365, 137, 655366, 137, 655367, 137, 655368, 137, 655369, 137, 655370, 137, 655371, 137, 655372, 137, 655373, 137, 655374, 137, 655375, 137, 655376, 137, 655377, 137, 655378, 137, 655379, 137, 655380, 137, 655381, 137, 655382, 137, 655383, 137, 655384, 137, 655385, 137, 655386, 137, 655387, 137, 655388, 137, 655389, 137, 655390, 137, 655391, 137, 655392, 137, 655393, 137, 655394, 137, 655395, 137, 655396, 137, 655397, 137, 655398, 137, 655399, 137, 655400, 137, 655401, 137, 655402, 137, 655403, 137, 655404, 137, 655405, 137, 655406, 137, 655407, 137, 655408, 137, 655409, 137, 655410, 137, 655411, 137, 655412, 137, 655413, 137, 655414, 137, 655415, 137, 655416, 137, 655417, 137, 655418, 137, 655419, 137, 655420, 137, 655421, 137, 655422, 161, 655423, 151, 655424, 151, 655425, 151, 655426, 151, 655427, 151, 655428, 151, 655429, 151, 655430, 151, 655431, 151, 786431, 4, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4, 720916, 4, 720917, 4, 720918, 4, 720919, 4, 720920, 4, 720921, 4, 720922, 4, 720923, 4, 720924, 4, 720925, 4, 720926, 4, 720927, 4, 720928, 4, 720929, 4, 720930, 4, 720931, 4, 720932, 4, 720933, 4, 720934, 4, 720935, 4, 720936, 4, 720937, 4, 720938, 4, 720939, 4, 720940, 4, 720941, 4, 720942, 4, 720943, 4, 720944, 4, 720945, 4, 720946, 4, 720947, 4, 720948, 4, 720949, 4, 720950, 4, 720951, 4, 720952, 4, 720953, 4, 720954, 4, 720955, 4, 720956, 4, 720957, 4, 720958, 4, 720959, 4, 720960, 4, 720961, 4, 720962, 4, 720963, 4, 720964, 4, 720965, 4, 720966, 4, 720967, 4 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 20, 0 )
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 56.0076, 134.657 )
+
+[node name="enemy_spawn" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 64, 112 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = true
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 188.158, 34.086 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 166.272, 39.0817 )
+
+[node name="enemy_spawn1" type="Area2D" parent="."]
+
+transform/pos = Vector2( 619.51, 116.191 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = true
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( -20.8014, -30.5778 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn1"]
+
+transform/pos = Vector2( -227.158, -29.7 )
+
+[node name="boss_spawn" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 619.51, 116.191 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = true
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss_spawn"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="boss_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="boss_spawn"]
+
+transform/pos = Vector2( -20.8014, -30.5778 )
+
+[node name="spawn_point2" type="Position2D" parent="boss_spawn"]
+
+transform/pos = Vector2( -228.238, -31.321 )
+
+[node name="enemy_spawn2" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 888.555, 143.39 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -40.4918, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = false
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = true
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 2
+has_door = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn2"]
+
+transform/pos = Vector2( -40.4918, 0 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn2"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn2"]
+
+transform/pos = Vector2( 52.7081, -0.438919 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn2"]
+
+transform/pos = Vector2( -188.003, 8.80735 )
+
+[node name="door" parent="enemy_spawn2" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( -32.555, -31.39 )
+map_index = 14
+
+[node name="arena_spawn" type="Node2D" parent="."]
+
+transform/pos = Vector2( 624, 128 )
+script/script = ExtResource( 8 )
+type = 2
+has_door = false
+number_to_spawn = 10
+
+[node name="spawnpoint_1" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -22.7351, -42.9736 )
+
+[node name="spawnpoint_2" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -232.739, -39.9443 )
+
+[node name="Timer" type="Timer" parent="arena_spawn"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="Area2D" type="Area2D" parent="arena_spawn"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena_spawn/Area2D"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="chicken" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 976, 160 )
+score_value = 3
+
+

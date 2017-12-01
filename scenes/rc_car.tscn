@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/rc_car.gd" type="Script" id=1]
+[ext_resource path="res://images/enemies/rc_car.png" type="Texture" id=2]
+[ext_resource path="res://audio/small_explosion.wav" type="Sample" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/explode = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "go"
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="ColorRamp" id=4]
+
+offsets = FloatArray( 0, 0.105263, 0.403509, 0.555556 )
+colors = ColorArray( 1, 0, 0, 1, 1, 0.859786, 0, 1, 1, 0.960938, 0, 1, 1, 0.991699, 0.7875, 1 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 9.7682, 7.65704 )
+
+[node name="rc_car" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+rc_car = true
+spin = false
+group_name = "heroes"
+explode_off_screen = true
+motion_start = Vector2( -1, 0 )
+SPEED = 100
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 2
+frame = 3
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/go = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "go"
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+transform/pos = Vector2( 13.9516, -5.58065 )
+config/amount = 15
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 160.0
+params/spread = 10.0
+params/linear_velocity = 20.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color_ramp = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -3.07454, 4.75063 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -3.07454, 4.75063 )
+shape = SubResource( 5 )
+trigger = true
+_update_shape_index = 0
+
+[node name="attack_position" type="Position2D" parent="."]
+
+transform/pos = Vector2( -14.2302, -2.89874 )
+
+[node name="explosion_shape" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+

@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://scripts/act_intro.gd" type="Script" id=1]
+[ext_resource path="res://images/scenery/moon_sky.png" type="Texture" id=2]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=3]
+[ext_resource path="res://scenes/fan.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/HUD/white_screen.png" type="Texture" id=5]
+[ext_resource path="res://images/HUD/black_bar.png" type="Texture" id=6]
+[ext_resource path="res://other/ingame.fnt" type="BitmapFont" id=7]
+
+[node name="prison_intro" type="Node2D" groups=[
+"intros",
+]]
+
+z/z = 3
+script/script = ExtResource( 1 )
+map_index = 28
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+editor/display_folded = true
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+z/z = -2
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 0, 31, 1, 31, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 19, 0, 65536, 31, 65537, 31, 65538, 32, 65539, 32, 65540, 1, 65541, 1, 65542, 32, 65543, 32, 65544, 32, 65545, 32, 65546, 1, 65547, 32, 65548, 32, 65549, 32, 65550, 32, 65551, 32, 65552, 32, 65553, 32, 65554, 32, 65555, 32, 131072, 31, 131073, 31, 131074, 0, 131075, 0, 131076, 1, 131077, 1, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 131082, 1, 131083, 0, 131084, 0, 131085, 0, 131086, 0, 131087, 0, 131088, 0, 131089, 0, 131090, 0, 131091, 0, 196608, 31, 196609, 31, 196610, 15, 196611, 15, 196612, 15, 196613, 15, 196614, 15, 196615, 15, 196616, 15, 196617, 15, 196618, 15, 196619, 15, 196620, 15, 196621, 15, 196622, 15, 196623, 15, 196624, 15, 196625, 15, 196626, 15, 196627, 15, 262144, 31, 262145, 31, 262146, 2, 262147, 2, 262148, 2, 262149, 2, 262150, 2, 262151, 2, 262152, 2, 262153, 2, 262154, 2, 262155, 2, 262156, 2, 262157, 2, 262158, 2, 262159, 2, 262160, 2, 262161, 2, 262162, 2, 262163, 2, 327680, 31, 327681, 31, 327682, 32, 327683, 32, 327684, 32, 327685, 32, 327686, 5, 327687, 32, 327688, 32, 327689, 32, 327690, 32, 327691, 32, 327692, 32, 327693, 32, 327694, 32, 327695, 15, 327696, 5, 327697, 15, 327698, 32, 327699, 32, 393216, 31, 393217, 31, 393218, 0, 393219, 4, 393220, 0, 393221, 0, 393222, 0, 393223, 0, 393224, 1, 393225, 0, 393226, 0, 393227, 0, 393228, 0, 393229, 0, 393230, 0, 393231, 15, 393232, 17, 393233, 15, 393234, 0, 393235, 0, 458752, 31, 458753, 31, 458754, 0, 458755, 4, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 1, 458761, 0, 458762, 0, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 15, 458768, 18, 458769, 15, 458770, 0, 458771, 0, 524288, 31, 524289, 28, 524290, 10, 524291, 10, 524292, 10, 524293, 10, 524294, 10, 524295, 10, 524296, 10, 524297, 10, 524298, 10, 524299, 10, 524300, 10, 524301, 10, 524302, 10, 524303, 10, 524304, 10, 524305, 10, 524306, 10, 524307, 10, 589824, 26, 589825, 13, 589826, 13, 589827, 12, 589828, 12, 589829, 12, 589830, 12, 589831, 12, 589832, 12, 589833, 12, 589834, 12, 589835, 12, 589836, 12, 589837, 12, 589838, 12, 589839, 12, 589840, 12, 589841, 12, 589842, 12, 589843, 12, 655360, 13, 655361, 13, 655362, 12, 655363, 13, 655364, 14, 655365, 12, 655366, 12, 655367, 12, 655368, 12, 655369, 12, 655370, 12, 655371, 12, 655372, 13, 655373, 12, 655374, 12, 655375, 12, 655376, 14, 655377, 12, 655378, 12, 655379, 12, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4 )
+
+[node name="fans" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( -520, 8 )
+
+[node name="fan" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 720, 80 )
+
+[node name="fan1" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 560, 16 )
+
+[node name="fan2" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 720, 16 )
+
+[node name="fan3" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 640, 16 )
+
+[node name="fan4" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 768, 16 )
+
+[node name="fan5" parent="fans" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 816, 16 )
+
+[node name="white_screen" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 5 )
+modulate = Color( 0.382813, 0, 0.358887, 0.213098 )
+
+[node name="black_bar" type="Sprite" parent="." groups=[
+"intros",
+]]
+
+transform/pos = Vector2( 152.685, 159.803 )
+transform/scale = Vector2( 1.06936, 2.43163 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 143.0
+margin/right = 77.0
+margin/bottom = 157.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Act I"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 159.0
+margin/right = 167.0
+margin/bottom = 173.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 0.82782, 0.152344, 1 )
+text = "Gonna Be a Jailbreak"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+
+

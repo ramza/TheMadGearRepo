@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://scripts/cutscene.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/rocket/sky.png" type="Texture" id=2]
+[ext_resource path="res://images/cutscenes/rocket/clouds.png" type="Texture" id=3]
+[ext_resource path="res://images/cutscenes/rocket/rocket_ship.png" type="Texture" id=4]
+[ext_resource path="res://images/cutscenes/rocket/foreground.png" type="Texture" id=5]
+[ext_resource path="res://audio/rocket.wav" type="Sample" id=6]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "rocket"
+length = 6.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("trees:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 160, 166.731 ), Vector2( 160, 170 ) ] }
+
+[sub_resource type="Animation" id=2]
+
+length = 6.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5, 5.2, 5.4, 5.6, 5.8, 6 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 1, 4 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 140.584, 157.392 ), Vector2( 89.3779, 157.88 ) ] }
+
+[sub_resource type="Animation" id=3]
+
+length = 6.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 140.584, 157.392 ), Vector2( 204.347, -38.7595 ) ] }
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/rocket = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+
+[node name="rocket" type="Node2D" groups=[ "cutscenes" ]]
+
+script/script = ExtResource( 1 )
+play_sound = true
+audio_name = "rocket"
+wait_time = 0
+play_sound_2 = false
+audio_name_2 = "sample2"
+wait_time_2 = 1
+cutscene = 18
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/rocket = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "rocket"
+
+[node name="sky" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="clouds" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 140.584, 157.392 )
+texture = ExtResource( 3 )
+vframes = 3
+hframes = 2
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="clouds"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/clouds = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "clouds"
+
+[node name="rocket_ship" type="Sprite" parent="."]
+
+transform/pos = Vector2( 141.647, 154.123 )
+texture = ExtResource( 4 )
+vframes = 2
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="rocket_ship"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/blast_off = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "blast_off"
+
+[node name="trees" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 170 )
+texture = ExtResource( 5 )
+
+[node name="SamplePlayer" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
+
+

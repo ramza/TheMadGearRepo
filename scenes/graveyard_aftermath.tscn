@@ -1,0 +1,228 @@
+[gd_scene load_steps=19 format=1]
+
+[ext_resource path="res://scripts/cutscene.gd" type="Script" id=1]
+[ext_resource path="res://images/cutscenes/text_scenes/tell_us_what.png" type="Texture" id=2]
+[ext_resource path="res://images/cutscenes/text_scenes/death_1.png" type="Texture" id=3]
+[ext_resource path="res://images/cutscenes/text_scenes/death_dagger_1.png" type="Texture" id=4]
+[ext_resource path="res://images/cutscenes/text_scenes/death_dagger_2.png" type="Texture" id=5]
+[ext_resource path="res://images/cutscenes/text_scenes/death_dagger_3.png" type="Texture" id=6]
+[ext_resource path="res://images/cutscenes/text_scenes/death_dagger_4.png" type="Texture" id=7]
+[ext_resource path="res://images/cutscenes/text_scenes/death_is_death.png" type="Texture" id=8]
+[ext_resource path="res://images/cutscenes/text_scenes/fancy_dagger.png" type="Texture" id=9]
+[ext_resource path="res://images/cutscenes/text_scenes/sounds_like.png" type="Texture" id=10]
+[ext_resource path="res://images/cutscenes/bruce/mint_bkg.png" type="Texture" id=11]
+[ext_resource path="res://images/cutscenes/bruce/bricks_2.png" type="Texture" id=12]
+[ext_resource path="res://images/cutscenes/bruce/bricks_1.png" type="Texture" id=13]
+[ext_resource path="res://images/cutscenes/bruce/bruce_face.png" type="Texture" id=14]
+[ext_resource path="res://images/cutscenes/text_boxes/whig_party.png" type="Texture" id=15]
+[ext_resource path="res://audio/hurt1.wav" type="Sample" id=16]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "play"
+length = 25.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tell_us:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("death_1:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("name:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 7.1 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("aint:visibility/visible")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 8.5 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("locked:visibility/visible")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 8.7 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("kidnapping:visibility/visible")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0, 9 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("ninjas:visibility/visible")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0, 10.5 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("bruce:visibility/visible")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 0, 19.4 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("bruce/bricks_2:transform/pos")
+tracks/8/interp = 1
+tracks/8/imported = false
+tracks/8/keys = { "times":FloatArray( 19.4, 23.4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -545.117, 0 ) ] }
+tracks/9/type = "value"
+tracks/9/path = NodePath("bruce/bricks_1:transform/pos")
+tracks/9/interp = 1
+tracks/9/imported = false
+tracks/9/keys = { "times":FloatArray( 19.4, 23.4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -375.689, 0 ) ] }
+tracks/10/type = "value"
+tracks/10/path = NodePath("fancy_dagger:visibility/visible")
+tracks/10/interp = 1
+tracks/10/imported = false
+tracks/10/keys = { "times":FloatArray( 0, 13 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+tracks/11/type = "value"
+tracks/11/path = NodePath("sounds_like:visibility/visible")
+tracks/11/interp = 1
+tracks/11/imported = false
+tracks/11/keys = { "times":FloatArray( 0, 16 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ false, true ] }
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/hurt1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 16 ) }
+
+[node name="graveyard_aftermath" type="Node2D" groups=[ "cutscenes", "cutscenes_alt" ]]
+
+script/script = ExtResource( 1 )
+play_sound = true
+audio_name = "hurt1"
+wait_time = 53
+play_sound_2 = false
+audio_name_2 = "sample2"
+wait_time_2 = 1
+cutscene = 17
+
+[node name="tell_us" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="death_1" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 3 )
+
+[node name="name" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 4 )
+
+[node name="aint" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 5 )
+
+[node name="locked" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 6 )
+
+[node name="kidnapping" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 7 )
+
+[node name="ninjas" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 8 )
+
+[node name="fancy_dagger" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 9 )
+
+[node name="sounds_like" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 10 )
+
+[node name="bruce" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 11 )
+
+[node name="bricks_2" type="Sprite" parent="bruce"]
+
+editor/display_folded = true
+texture = ExtResource( 12 )
+
+[node name="bricks_3" type="Sprite" parent="bruce/bricks_2"]
+
+transform/pos = Vector2( 288.157, 0 )
+texture = ExtResource( 12 )
+
+[node name="bricks_4" type="Sprite" parent="bruce/bricks_2"]
+
+transform/pos = Vector2( 577.904, 0 )
+texture = ExtResource( 12 )
+
+[node name="bricks_1" type="Sprite" parent="bruce"]
+
+editor/display_folded = true
+texture = ExtResource( 13 )
+
+[node name="bricks_3" type="Sprite" parent="bruce/bricks_1"]
+
+transform/pos = Vector2( 228.36, 0 )
+texture = ExtResource( 13 )
+
+[node name="bricks_4" type="Sprite" parent="bruce/bricks_1"]
+
+transform/pos = Vector2( 449.353, 0 )
+texture = ExtResource( 13 )
+
+[node name="face" type="Sprite" parent="bruce"]
+
+texture = ExtResource( 14 )
+
+[node name="text" type="Sprite" parent="bruce"]
+
+transform/pos = Vector2( -80.8604, -1.47018 )
+texture = ExtResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/play = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "play"
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+

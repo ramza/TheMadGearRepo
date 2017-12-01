@@ -1,0 +1,217 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://images/scenery/starry_sky.png" type="Texture" id=1]
+[ext_resource path="res://images/scenery/blue_mountains.png" type="Texture" id=2]
+[ext_resource path="res://other/tiles.xml" type="TileSet" id=3]
+[ext_resource path="res://scenes/camera_rig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/enemy_spawn.gd" type="Script" id=6]
+[ext_resource path="res://scenes/super_boss_face.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/spikes.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/arena_spawn.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 180 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 128 )
+
+[node name="fortress_4" type="Node2D" groups=[
+"boss",
+]]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 160, 90 )
+texture = ExtResource( 1 )
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.2, 0.2 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer1"]
+
+transform/pos = Vector2( 160, 79.7332 )
+texture = ExtResource( 2 )
+
+[node name="player_spawn" type="Position2D" parent="."]
+
+transform/pos = Vector2( 103.648, 97.0323 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 4, 2, 4, 3, 4, 4, 127, 5, 126, 6, 126, 7, 126, 8, 54, 9, 54, 10, 127, 11, 54, 12, 54, 16, 127, 17, 126, 18, 126, 19, 126, 20, 126, 21, 126, 22, 126, 23, 126, 24, 126, 25, 126, 26, 126, 27, 126, 28, 121, 31, 121, 32, 4, 33, 4, 34, 4, 35, 4, 36, 4, 37, 4, 38, 4, 39, 4, 40, 4, 41, 4, 42, 4, 131071, 4, 65536, 4, 65537, 4, 65538, 4, 65539, 4, 65540, 127, 65541, 126, 65542, 126, 65543, 126, 65544, 126, 65545, 126, 65546, 127, 65552, 127, 65553, 126, 65554, 126, 65555, 126, 65556, 126, 65557, 126, 65558, 126, 65559, 126, 65560, 126, 65561, 126, 65562, 126, 65563, 126, 65564, 121, 65567, 121, 65568, 4, 65571, 126, 65572, 54, 65578, 4, 196607, 4, 131072, 4, 131073, 4, 131074, 4, 131075, 4, 131076, 127, 131077, 126, 131078, 126, 131079, 126, 131080, 126, 131081, 126, 131082, 127, 131088, 127, 131089, 126, 131090, 126, 131091, 126, 131092, 126, 131093, 126, 131094, 126, 131095, 126, 131096, 126, 131097, 126, 131098, 126, 131099, 126, 131100, 121, 131103, 121, 131104, 4, 131107, 126, 131108, 4, 131109, 4, 131110, 4, 131114, 4, 262143, 4, 196608, 4, 196609, 4, 196610, 4, 196611, 4, 196612, 127, 196613, 121, 196614, 121, 196615, 121, 196616, 126, 196617, 126, 196618, 127, 196624, 127, 196625, 121, 196626, 121, 196627, 121, 196628, 126, 196629, 126, 196630, 126, 196631, 121, 196632, 121, 196633, 121, 196634, 126, 196635, 126, 196636, 121, 196639, 121, 196640, 4, 196643, 4, 196644, 4, 196645, 4, 196646, 4, 196650, 4, 327679, 4, 262144, 4, 262145, 4, 262146, 4, 262147, 4, 262148, 127, 262149, 121, 262150, 4, 262151, 121, 262152, 126, 262153, 126, 262154, 127, 262160, 127, 262161, 121, 262162, 4, 262163, 121, 262164, 126, 262165, 126, 262166, 126, 262167, 121, 262168, 4, 262169, 121, 262170, 126, 262171, 126, 262172, 122, 262175, 122, 262176, 4, 262179, 4, 262180, 4, 262181, 4, 262182, 4, 262186, 4, 393215, 4, 327680, 4, 327681, 4, 327682, 4, 327683, 4, 327684, 117, 327685, 117, 327686, 4, 327687, 117, 327688, 117, 327689, 117, 327690, 117, 327691, 117, 327692, 117, 327693, 117, 327694, 117, 327695, 117, 327696, 117, 327697, 117, 327698, 4, 327699, 117, 327700, 117, 327701, 117, 327702, 117, 327703, 117, 327704, 4, 327705, 117, 327706, 117, 327707, 117, 327708, 117, 327709, 117, 327710, 117, 327711, 117, 327712, 4, 327713, 117, 327714, 4, 327715, 4, 327716, 4, 327717, 4, 327718, 4, 327722, 4, 458751, 4, 393216, 4, 393217, 4, 393218, 4, 393219, 21, 393220, 13, 393221, 13, 393222, 13, 393223, 13, 393224, 13, 393225, 13, 393226, 13, 393227, 13, 393228, 13, 393229, 13, 393230, 13, 393231, 13, 393232, 13, 393233, 13, 393234, 13, 393235, 13, 393236, 13, 393237, 13, 393238, 13, 393239, 13, 393240, 13, 393241, 13, 393242, 13, 393243, 13, 393244, 13, 393245, 13, 393246, 13, 393247, 13, 393248, 22, 393249, 4, 393250, 4, 393251, 4, 393252, 4, 393253, 4, 393254, 4, 393258, 4, 524287, 4, 458752, 4, 458753, 4, 458754, 21, 458755, 13, 458756, 13, 458757, 13, 458758, 13, 458759, 13, 458760, 13, 458761, 13, 458762, 13, 458763, 13, 458764, 13, 458765, 13, 458766, 13, 458767, 13, 458768, 13, 458769, 13, 458770, 13, 458771, 13, 458772, 13, 458773, 13, 458774, 13, 458775, 13, 458776, 13, 458777, 13, 458778, 13, 458779, 13, 458780, 13, 458781, 13, 458782, 13, 458783, 13, 458784, 13, 458785, 22, 458786, 4, 458787, 4, 458788, 4, 458789, 4, 458790, 4, 458794, 4, 589823, 4, 524288, 4, 524289, 21, 524290, 13, 524291, 13, 524292, 13, 524293, 13, 524294, 13, 524295, 13, 524296, 13, 524297, 13, 524298, 13, 524299, 13, 524300, 13, 524301, 13, 524302, 13, 524303, 13, 524304, 13, 524305, 13, 524306, 13, 524307, 13, 524308, 13, 524309, 13, 524310, 13, 524311, 13, 524312, 13, 524313, 13, 524314, 13, 524315, 13, 524316, 13, 524317, 13, 524318, 13, 524319, 13, 524320, 13, 524321, 13, 524322, 22, 524323, 4, 524324, 4, 524325, 4, 524326, 4, 524330, 4, 655359, 4, 589824, 21, 589825, 13, 589826, 13, 589827, 13, 589828, 13, 589829, 13, 589830, 13, 589831, 13, 589832, 13, 589833, 13, 589834, 13, 589835, 13, 589836, 13, 589837, 13, 589838, 13, 589839, 13, 589840, 13, 589841, 13, 589842, 13, 589843, 13, 589844, 13, 589845, 13, 589846, 13, 589847, 13, 589848, 13, 589849, 13, 589850, 13, 589851, 13, 589852, 13, 589853, 13, 589854, 13, 589855, 13, 589856, 13, 589857, 13, 589858, 13, 589859, 22, 589860, 4, 589861, 4, 589862, 4, 589866, 4, 720895, 4, 655360, 41, 655361, 41, 655362, 41, 655363, 41, 655364, 41, 655365, 41, 655366, 41, 655367, 41, 655368, 41, 655369, 41, 655370, 41, 655371, 41, 655372, 41, 655373, 41, 655374, 41, 655375, 41, 655376, 41, 655377, 41, 655378, 41, 655379, 41, 655380, 41, 655381, 41, 655382, 41, 655383, 41, 655384, 41, 655385, 41, 655386, 41, 655387, 41, 655388, 41, 655389, 41, 655390, 41, 655391, 41, 655392, 41, 655393, 41, 655394, 41, 655395, 41, 655396, 22, 655397, 4, 655398, 4, 655402, 4, 786431, 4, 720896, 4, 720897, 4, 720898, 4, 720899, 4, 720900, 4, 720901, 4, 720902, 4, 720903, 4, 720904, 4, 720905, 4, 720906, 4, 720907, 4, 720908, 4, 720909, 4, 720910, 4, 720911, 4, 720912, 4, 720913, 4, 720914, 4, 720915, 4, 720916, 4, 720917, 4, 720918, 4, 720919, 4, 720920, 4, 720921, 4, 720922, 4, 720923, 4, 720924, 4, 720925, 4, 720926, 4, 720927, 4, 720928, 4, 720929, 4, 720930, 4, 720931, 4, 720932, 4, 720933, 4, 720934, 4, 720935, 4, 720936, 4, 720937, 4, 720938, 4 )
+
+[node name="camera_rig" parent="." instance=ExtResource( 4 )]
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="enemy_spawn" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 104.383, 59.5426 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+guards = false
+ninjas = false
+hounds = false
+big_dudes = false
+rc_car = false
+red_guards = false
+skeletons = false
+fat_ninjas = false
+brawlers = true
+archers = false
+super_ninjas = false
+boss_bots = false
+deaths = false
+cyborgs = false
+vampires = false
+green_whigs = false
+duelists = false
+big_whigs = false
+waltzers = false
+red_skeletons = false
+amount = 1
+has_door = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_spawn"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="enemy_spawn"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="spawn_point1" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 257.617, 86.3349 )
+
+[node name="spawn_point2" type="Position2D" parent="enemy_spawn"]
+
+transform/pos = Vector2( 225.617, 86.3349 )
+
+[node name="super_boss_face" parent="." instance=ExtResource( 7 )]
+
+[node name="spikes" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 176, 128 )
+
+[node name="spikes2" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 225.173, 97.1995 )
+
+[node name="spikes3" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 358.642, 97.7398 )
+
+[node name="spikes4" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 416.46, 131.783 )
+
+[node name="spikes5" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 135.656, 103.85 )
+
+[node name="spikes6" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 76.1139, 137.664 )
+
+[node name="spikes1" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 288, 112 )
+
+[node name="arena_spawn" type="Node2D" parent="."]
+
+transform/pos = Vector2( 412.918, 92.0753 )
+script/script = ExtResource( 9 )
+type = 0
+has_door = false
+number_to_spawn = 10
+
+[node name="spawnpoint_1" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -114.846, 5.15269 )
+
+[node name="spawnpoint_2" type="Position2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -20.6566, 9.79493 )
+
+[node name="Timer" type="Timer" parent="arena_spawn"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Area2D" type="Area2D" parent="arena_spawn"]
+
+transform/pos = Vector2( -22.8876, 0.294968 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena_spawn/Area2D"]
+
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
+
+

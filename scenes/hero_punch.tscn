@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://scripts/hero_punch.gd" type="Script" id=1]
+[ext_resource path="res://images/effects/yellow_burst.png" type="Texture" id=2]
+[ext_resource path="res://audio/misc_fight_sounds/Punch 1.wav" type="Sample" id=3]
+[ext_resource path="res://audio/misc_fight_sounds/Punch 2.wav" type="Sample" id=4]
+[ext_resource path="res://audio/misc_fight_sounds/Punch 3.wav" type="Sample" id=5]
+[ext_resource path="res://audio/misc_fight_sounds/Punch 4.wav" type="Sample" id=6]
+[ext_resource path="res://images/effects/green_lightening.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 17.0257, 6.17945 )
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/punch1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+samples/punch2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/punch3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/punch4 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "blue"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 1, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 0.05
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 3 ]
+}
+
+[node name="hero_punch" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -5.18954, 0.63036 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -5.18954, 0.63036 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -0.249987, 0.55637 )
+z/z = 10
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 2
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/blue = SubResource( 3 )
+anims/white = SubResource( 4 )
+anims/yellow = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "white"
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 40
+config/lifetime = 2.0
+config/emitting = false
+config/process_mode = 1
+config/half_extents = Vector2( 5, 5 )
+config/texture = ExtResource( 7 )
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 20.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+
