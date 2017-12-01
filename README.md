@@ -1,9 +1,6 @@
 # TheMadGear: Go Right and Fight!
 
-
-![ninja](https://github.com/ramza/TheMadGearRepo/blob/master/images/screenshots/city.png?raw=true)
-
-The Baddest Rock Band in Turbo City
+##The Baddest Rock Band in Turbo City
 
 Battle your way through five levels of classic beat 'em up style gameplay featuring the worst that Turbo City's loony fighting gangs have to offer.
 
@@ -13,5 +10,6 @@ The Mad Gear need your help to clear their name and save the mayor. Arrested und
 
 Team up with a friend and go head to head with a hilarious cast of villains rendered in bold pixel graphics. There's no shortage of explosions in this game either. Smash your way through five different gangs and face off with every gang boss.
 
-The Mad Gear was build with the Godot Game Engine version 2.1.4. Animations were created using Aseprite.
+The Mad Gear was build with the **Godot Game Engine** version 2.1.4. Animations were created using **Aseprite**.
 
+![ninja](https://github.com/ramza/TheMadGearRepo/blob/master/images/screenshots/city.png?raw=true)
