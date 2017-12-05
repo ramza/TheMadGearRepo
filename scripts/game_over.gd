@@ -31,8 +31,8 @@ func _on_action_timer_timeout():
 func _process(delta):
 	var start = Input.is_action_pressed("start") or Input.is_action_pressed("punch")
 	
-	var up = Input.is_action_pressed("ui_up")
-	var down = Input.is_action_pressed("ui_down")
+	var up = Input.is_action_pressed("ui_up") or Input.is_action_pressed("move_up")
+	var down = Input.is_action_pressed("ui_down") or Input.is_action_pressed("move_down")
 	if(can_choose):
 		if(up):
 			quit = false

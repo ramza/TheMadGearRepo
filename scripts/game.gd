@@ -112,7 +112,7 @@ var slow_counter = 0
 var slow_duration = 0
 
 var continues = 3
-var player_2_continue = true
+var player_2_continue = false
 
 var savegame = File.new()
 var save_path = "user://savegame.save"
@@ -121,7 +121,7 @@ var save_data = {'name_1': "Bonnie", 'score_1': 5000,
 				'name_3': "Bigvig", 'score_3': 3000,
 				'name_4': "Miles", 'score_4': 2000,
 				'name_5': "Shreddy", 'score_5': 1000,
-				'name_6': "Josh", 'score_6': 500,
+				'name_6': "Ramza", 'score_6': 500,
 				'name_7': "Rex", 'score_7': 400,
 				'name_8': "Dingo", 'score_8': 300,
 				'name_9': "Bloop", 'score_9': 200,
@@ -238,8 +238,6 @@ func initialize_scene():
 		player2.set_score(player2_score)
 		player2.hp = player2_hp
 		player2.mp = player2_mp
-		print(player.get_name())
-		print(player2.get_name())
 		current_scene.add_child(player2)
 		player = temp
 		character_list.append(player2)
